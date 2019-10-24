@@ -9,6 +9,10 @@ let setupCanvas = function() {
     canvas.height = rect.height * dpr;
 }
 
+let round = function(num) {
+    return Math.round(num * 100) / 100;
+}
+
 class Node {
     constructor(symbol, probability, col, row, parent) {
         this.symbol = symbol;
@@ -16,9 +20,12 @@ class Node {
         this.col = col;
         this.row = row;
         this.parent = parent;
-
-        this.x = col * SQUARE_WIDTH * 2;
-        this.y = row * 150;
+    }
+    get getX() {
+        return this.col * SQUARE_WIDTH * 2;
+    }
+    get getY() {
+        return this.row * 150;
     }
     get getCtx() {
         let canvas = document.getElementById("canvas");
@@ -28,8 +35,8 @@ class Node {
     drawLink() {
         let ctx = this.getCtx;
         ctx.beginPath();
-        ctx.moveTo(this.x, this.y + SQUARE_HEIGHT/2);
-        ctx.lineTo(this.parent.x + SQUARE_WIDTH, this.parent.y + SQUARE_HEIGHT/2);
+        ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
+        ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
         ctx.stroke();
     }
 }
@@ -39,7 +46,7 @@ class SquareNode extends Node {
         let ctx = this.getCtx;
 
         ctx.beginPath();
-        ctx.rect(this.x, this.y, 100, 100);
+        ctx.rect(this.getX, this.getY, 100, 100);
         ctx.stroke();
 
         ctx.font = "30px Arial";
@@ -54,7 +61,24 @@ class CircleNode extends Node {
         let ctx = this.getCtx;
 
         ctx.beginPath();
-        ctx.arc(this.x, this.y, 50, 0, 2 * Math.PI);
+        ctx.arc(this.getX + 50, this.getY + 50, 50, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.font = "30px Arial";
+        ctx.fillText(`P = ${this.probability}`, 
+                     this.col * SQUARE_WIDTH * 2, 
+                     this.row * 150 + SQUARE_HEIGHT/2);
+    }
+    drawLink() {
+        let ctx = this.getCtx;
+        ctx.beginPath();
+        ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
+        ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
+        ctx.lineTo(this.parent[1].getX + SQUARE_WIDTH, this.parent[1].getY + SQUARE_HEIGHT/2);
         ctx.stroke();
     }
 }
@@ -72,20 +96,39 @@ let main = function() {
     nodes.sort((a, b) => a.probability < b.probability ? 1 : -1);
 
     for (let i = 0; i < nodes.length; i++) {
+        nodes[i].row = i;
         nodes[i].draw();
     }
 
-    let nodes1 = []
+    let nodes1 = genNewColumn(nodes);
 
-    nodes1[0] = new SquareNode("0", 0.1, 1, 0, nodes[0]);
-    nodes1[1] = new SquareNode("1", 0.2, 1, 1, nodes[0]);
-    nodes1[2] = new SquareNode("2", 0.3, 1, 2, nodes[3]);
-    nodes1[3] = new SquareNode("3", 0.4, 1, 3, nodes[3]);
-
-    for (let i = 0; i < nodes.length; i++) {
+    for (let i = 0; i < nodes1.length; i++) {
+        nodes1[i].row = i;
+        nodes1[i].col = 1;
         nodes1[i].draw();
         nodes1[i].drawLink();
     }
+}
+
+
+let genNewColumn = function(nodes) {
+    let newNodes = []
+
+    let minNode1 = nodes[nodes.length - 1];
+    let minNode2 = nodes[nodes.length - 2];
+
+    for (let i = 0; i < nodes.length - 2; i++) {
+        newNodes[i] = new SquareNode(nodes[i].symbol, nodes[i].probability, 
+                                     i, i, [nodes[i]]);
+    }
+
+    newNodes[newNodes.length] = new CircleNode(minNode1.symbol + minNode2.symbol, 
+                                               round(minNode1.probability + minNode2.probability),
+                                               newNodes.length, newNodes.length, [minNode1, minNode2]);
+
+    newNodes.sort((a, b) => a.probability < b.probability ? 1 : -1);
+
+    return newNodes;
 }
 
 main();
