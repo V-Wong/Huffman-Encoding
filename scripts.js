@@ -50,9 +50,9 @@ class SquareNode extends Node {
         ctx.stroke();
 
         ctx.font = "30px Arial";
-        ctx.fillText(`P = ${this.probability}`, 
-                     this.col * SQUARE_WIDTH * 2, 
-                     this.row * 150 + SQUARE_HEIGHT/2);
+        ctx.fillText(`${this.probability}`, 
+                     this.getX + SQUARE_WIDTH/2 - 25, 
+                     this.getY + SQUARE_HEIGHT/2);
     }
 }
 
@@ -65,9 +65,9 @@ class CircleNode extends Node {
         ctx.stroke();
 
         ctx.font = "30px Arial";
-        ctx.fillText(`P = ${this.probability}`, 
-                     this.col * SQUARE_WIDTH * 2, 
-                     this.row * 150 + SQUARE_HEIGHT/2);
+        ctx.fillText(`${this.probability}`, 
+                     this.getX + SQUARE_WIDTH/2 - 25, 
+                     this.getY + SQUARE_HEIGHT/2);
     }
     drawLink() {
         let ctx = this.getCtx;
@@ -116,6 +116,11 @@ let huffmanEncode = function(nodes) {
         newNodes = genNewColumn(newNodes);
         columns.push(newNodes);
     }
+
+    newNodes[0].row = 0;
+    newNodes[0].col = columns.length - 1;
+    newNodes[0].draw();
+    newNodes[0].drawLink();
 
     return columns;
 }
