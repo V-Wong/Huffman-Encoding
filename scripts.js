@@ -10,9 +10,15 @@ let setupCanvas = function() {
 }
 
 class Node {
-    constructor(symbol, probability) {
+    constructor(symbol, probability, col, row, parent) {
         this.symbol = symbol;
         this.probability = probability;
+        this.col = col;
+        this.row = row;
+        this.parent = parent;
+
+        this.x = col * 10;
+        this.y = row * 150;
     }
     get getCtx() {
         let canvas = document.getElementById("canvas");
@@ -26,7 +32,7 @@ class SquareNode extends Node {
         let ctx = this.getCtx;
 
         ctx.beginPath();
-        ctx.rect(col * 10, row * 150, 100, 100);
+        ctx.rect(this.x, this.y, 100, 100);
         ctx.stroke();
 
         ctx.font = "30px Arial";
@@ -41,7 +47,7 @@ class CircleNode extends Node {
         let ctx = this.getCtx;
 
         ctx.beginPath();
-        ctx.arc(col * 50, row * 50, 50, 0, 2 * Math.PI);
+        ctx.arc(this.x, this.y, 50, 0, 2 * Math.PI);
         ctx.stroke();
     }
 }
@@ -51,10 +57,10 @@ let main = function() {
 
     let nodes = [];
 
-    nodes[0] = new SquareNode("0", 0.1);
-    nodes[1] = new SquareNode("1", 0.2);
-    nodes[2] = new SquareNode("2", 0.3);
-    nodes[3] = new SquareNode("3", 0.4);
+    nodes[0] = new SquareNode("0", 0.1, 1, 0);
+    nodes[1] = new SquareNode("1", 0.2, 1, 1);
+    nodes[2] = new SquareNode("2", 0.3, 1, 2);
+    nodes[3] = new SquareNode("3", 0.4, 1, 3);
 
     nodes.sort((a, b) => a.probability < b.probability ? 1 : -1);
 
