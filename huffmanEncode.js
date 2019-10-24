@@ -41,7 +41,7 @@ let genNewColumn = function(nodes) {
                                                round(minNode1.probability + minNode2.probability),
                                                newNodes.length, newNodes.length, [minNode1, minNode2]);
 
-    newNodes.sort((a, b) => a.probability < b.probability ? 1 : -1);
+    newNodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
 
     return newNodes;
 }

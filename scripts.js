@@ -6,7 +6,7 @@ let main = function(nodes) {
 
     console.log(nodes);
 
-    nodes.sort((a, b) => a.probability < b.probability ? 1 : -1);
+    nodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
 
     huffmanEncode(nodes);
 }
