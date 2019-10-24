@@ -19,6 +19,7 @@ class Node {
     }
     drawLink() {
         let ctx = this.getCtx;
+        ctx.strokeStyle = "white";
         ctx.setLineDash([5, 3]);
         ctx.beginPath();
         ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
@@ -32,10 +33,10 @@ class SquareNode extends Node {
     draw() {
         let ctx = this.getCtx;
 
-        ctx.beginPath();
-        ctx.rect(this.getX, this.getY, 100, 100);
-        ctx.stroke();
+        ctx.fillStyle = "#00897b";
+        ctx.fillRect(this.getX, this.getY, 100, 100);
 
+        ctx.fillStyle = "white";
         ctx.font = "30px Arial";
         ctx.fillText(`${this.probability}`, 
                      this.getX + SQUARE_WIDTH/2 - 25, 
@@ -49,8 +50,10 @@ class CircleNode extends Node {
 
         ctx.beginPath();
         ctx.arc(this.getX + 50, this.getY + 50, 50, 0, 2 * Math.PI);
-        ctx.stroke();
+        ctx.fillStyle = "#00897b";
+        ctx.fill();
 
+        ctx.fillStyle = "white";
         ctx.font = "30px Arial";
         ctx.fillText(`${this.probability}`, 
                      this.getX + SQUARE_WIDTH/2 - 25, 
@@ -58,6 +61,8 @@ class CircleNode extends Node {
     }
     drawLink() {
         let ctx = this.getCtx;
+        ctx.strokeStyle = "white";
+
         ctx.beginPath();
         ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
         ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
