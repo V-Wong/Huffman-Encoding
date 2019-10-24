@@ -1,15 +1,10 @@
 SQUARE_HEIGHT = 100;
 SQUARE_WIDTH = 100;
 
-let main = function() {
+let main = function(nodes) {
     setupCanvas();
 
-    let nodes = [];
-
-    nodes[0] = new SquareNode("0", 0.1, 0, 0);
-    nodes[1] = new SquareNode("1", 0.2, 0, 1);
-    nodes[2] = new SquareNode("2", 0.3, 0, 2);
-    nodes[3] = new SquareNode("3", 0.4, 0, 3);
+    console.log(nodes);
 
     nodes.sort((a, b) => a.probability < b.probability ? 1 : -1);
 
@@ -28,4 +23,18 @@ let round = function(num) {
     return Math.round(num * 100) / 100;
 }
 
-main();
+let getInput = function() {
+    let inputs = document.getElementsByClassName("code-input");
+
+    return [
+        new SquareNode("0", parseFloat(inputs[0].value), 0, 0),
+        new SquareNode("0", parseFloat(inputs[1].value), 0, 0),
+        new SquareNode("0", parseFloat(inputs[2].value), 0, 0),
+        new SquareNode("0", parseFloat(inputs[3].value), 0, 0),
+    ]
+}
+
+document.getElementById("submit").addEventListener("click", (event) => {
+    event.preventDefault();
+    main(getInput());
+});
