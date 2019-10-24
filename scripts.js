@@ -95,19 +95,29 @@ let main = function() {
 
     nodes.sort((a, b) => a.probability < b.probability ? 1 : -1);
 
-    for (let i = 0; i < nodes.length; i++) {
-        nodes[i].row = i;
-        nodes[i].draw();
+    huffmanEncode(nodes);
+}
+
+let huffmanEncode = function(nodes) {
+    let columns = [nodes];
+    let newNodes = nodes;
+
+    let i = 0;
+    while (newNodes.length > 1) {
+        for (let j = 0; j < newNodes.length; j++) {
+            newNodes[j].row = j;
+            newNodes[j].col = i;
+            newNodes[j].draw();
+            if (newNodes[j].parent != undefined) {
+                newNodes[j].drawLink();
+            }
+        }
+        i++;
+        newNodes = genNewColumn(newNodes);
+        columns.push(newNodes);
     }
 
-    let nodes1 = genNewColumn(nodes);
-
-    for (let i = 0; i < nodes1.length; i++) {
-        nodes1[i].row = i;
-        nodes1[i].col = 1;
-        nodes1[i].draw();
-        nodes1[i].drawLink();
-    }
+    return columns;
 }
 
 
