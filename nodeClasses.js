@@ -5,6 +5,8 @@ class Node {
         this.col = col;
         this.row = row;
         this.parent = parent;
+        this.canvas = document.getElementById("canvas");
+        this.ctx = this.canvas.getContext("2d");
     }
     get getX() {
         return this.col * SQUARE_WIDTH * 2;
@@ -12,33 +14,25 @@ class Node {
     get getY() {
         return this.row * 150;
     }
-    get getCtx() {
-        let canvas = document.getElementById("canvas");
-        let ctx = canvas.getContext("2d");
-        return ctx;
-    }
     drawLink() {
-        let ctx = this.getCtx;
-        ctx.strokeStyle = "white";
-        ctx.setLineDash([5, 3]);
-        ctx.beginPath();
-        ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
-        ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
-        ctx.stroke();
-        ctx.setLineDash([0]);
+        this.ctx.strokeStyle = "white";
+        this.ctx.setLineDash([5, 3]);
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
+        this.ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
+        this.ctx.stroke();
+        this.ctx.setLineDash([0]);
     }
 }
 
 class SquareNode extends Node {
     draw() {
-        let ctx = this.getCtx;
+        this.ctx.fillStyle = "#00897b";
+        this.ctx.fillRect(this.getX, this.getY, 100, 100);
 
-        ctx.fillStyle = "#00897b";
-        ctx.fillRect(this.getX, this.getY, 100, 100);
-
-        ctx.fillStyle = "white";
-        ctx.font = "30px Arial";
-        ctx.fillText(`${this.probability}`, 
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "30px Arial";
+        this.ctx.fillText(`${this.probability}`, 
                      this.getX + SQUARE_WIDTH/2 - 25, 
                      this.getY + SQUARE_HEIGHT/2);
     }
@@ -46,31 +40,28 @@ class SquareNode extends Node {
 
 class CircleNode extends Node {
     draw() {
-        let ctx = this.getCtx;
+        this.ctx.beginPath();
+        this.ctx.arc(this.getX + 50, this.getY + 50, 50, 0, 2 * Math.PI);
+        this.ctx.fillStyle = "#00897b";
+        this.ctx.fill();
 
-        ctx.beginPath();
-        ctx.arc(this.getX + 50, this.getY + 50, 50, 0, 2 * Math.PI);
-        ctx.fillStyle = "#00897b";
-        ctx.fill();
-
-        ctx.fillStyle = "white";
-        ctx.font = "30px Arial";
-        ctx.fillText(`${this.probability}`, 
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "30px Arial";
+        this.ctx.fillText(`${this.probability}`, 
                      this.getX + SQUARE_WIDTH/2 - 25, 
                      this.getY + SQUARE_HEIGHT/2);
     }
     drawLink() {
-        let ctx = this.getCtx;
-        ctx.strokeStyle = "white";
+        this.ctx.strokeStyle = "white";
 
-        ctx.beginPath();
-        ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
-        ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
-        ctx.stroke();
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
+        this.ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
+        this.ctx.stroke();
 
-        ctx.beginPath();
-        ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
-        ctx.lineTo(this.parent[1].getX + SQUARE_WIDTH, this.parent[1].getY + SQUARE_HEIGHT/2);
-        ctx.stroke();
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
+        this.ctx.lineTo(this.parent[1].getX + SQUARE_WIDTH, this.parent[1].getY + SQUARE_HEIGHT/2);
+        this.ctx.stroke();
     }
 }
