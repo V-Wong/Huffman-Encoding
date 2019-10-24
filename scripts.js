@@ -34,10 +34,12 @@ class Node {
     }
     drawLink() {
         let ctx = this.getCtx;
+        ctx.setLineDash([5, 3]);
         ctx.beginPath();
         ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
         ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
         ctx.stroke();
+        ctx.setLineDash([0]);
     }
 }
 
