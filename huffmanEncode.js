@@ -25,6 +25,18 @@ let huffmanEncode = function(nodes) {
     return columns;
 }
 
+let circleAboveSquares = function(nodes) {
+    for (let i = 0; i < nodes.length - 1; i++) {
+        if (nodes[i].probability == nodes[i + 1].probability
+                && nodes[i + 1].constructor.name == "CircleNode") {
+            let temp = nodes[i];
+            nodes[i] = nodes[i + 1];
+            nodes[i + 1] = temp;
+        }
+    }
+
+    return nodes;
+}
 
 let genNewColumn = function(nodes) {
     let newNodes = []
@@ -42,6 +54,7 @@ let genNewColumn = function(nodes) {
                                                newNodes.length, newNodes.length, [minNode1, minNode2]);
 
     newNodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
+    newNodes = circleAboveSquares(newNodes);
 
     return newNodes;
 }
