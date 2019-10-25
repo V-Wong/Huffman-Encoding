@@ -93,9 +93,13 @@ generateInputFields(8);
 document.getElementById("submit").addEventListener("click", (event) => {
     event.preventDefault();
     let nodes = getInput();
-    if (sumProbabilities(nodes) === 1) {
-        main(nodes);
+    if (nodes.length > 1) {
+        if (sumProbabilities(nodes) === 1) {
+            main(nodes);
+        } else {
+            window.alert("Please ensure probablities sum to 1");
+        }
     } else {
-        window.alert("Please ensure probablities sum to 1");
+        window.alert("Please input at least 2 symbols");
     }
 });
