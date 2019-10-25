@@ -24,6 +24,16 @@ let round = function(num) {
     return Math.round(num * 100) / 100;
 }
 
+let sumProbabilities = function(array) {
+    let sum = 0;
+
+    for (let element of array) {
+        sum += element.probability;
+    }
+
+    return sum;
+}
+
 let generateInputFields = function(num) {
     for (let i = 0; i < num; i++) {
         let container = document.createElement("div");
@@ -83,5 +93,9 @@ generateInputFields(8);
 document.getElementById("submit").addEventListener("click", (event) => {
     event.preventDefault();
     let nodes = getInput();
-    main(nodes);
+    if (sumProbabilities(nodes) === 1) {
+        main(nodes);
+    } else {
+        window.alert("Please ensure probablities sum to 1");
+    }
 });
