@@ -1,3 +1,6 @@
+SQUARE_HEIGHT = 125;
+SQUARE_WIDTH = 125;
+
 class Node {
     constructor(symbol, probability, col, row, parent) {
         this.symbol = symbol;
@@ -9,10 +12,10 @@ class Node {
         this.ctx = this.canvas.getContext("2d");
     }
     get getX() {
-        return this.col * SQUARE_WIDTH * 2;
+        return 10 + this.col * SQUARE_WIDTH * 2;
     }
     get getY() {
-        return this.row * 150;
+        return 10 + this.row * SQUARE_HEIGHT * 2;
     }
     drawLink() {
         this.ctx.strokeStyle = "white";
@@ -28,7 +31,7 @@ class Node {
 class SquareNode extends Node {
     draw() {
         this.ctx.fillStyle = "#00897b";
-        this.ctx.fillRect(this.getX, this.getY, 100, 100);
+        this.ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
 
         this.ctx.fillStyle = "white";
         this.ctx.font = "30px Arial";
@@ -41,7 +44,7 @@ class SquareNode extends Node {
 class CircleNode extends Node {
     draw() {
         this.ctx.beginPath();
-        this.ctx.arc(this.getX + 50, this.getY + 50, 50, 0, 2 * Math.PI);
+        this.ctx.arc(this.getX + SQUARE_WIDTH/2, this.getY + SQUARE_HEIGHT/2, SQUARE_WIDTH/2, 0, 2 * Math.PI);
         this.ctx.fillStyle = "#00897b";
         this.ctx.fill();
 

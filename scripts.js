@@ -1,6 +1,3 @@
-SQUARE_HEIGHT = 100;
-SQUARE_WIDTH = 100;
-
 let main = function(nodes) {
     setupCanvas();
 
