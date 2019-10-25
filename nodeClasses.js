@@ -1,6 +1,6 @@
 LEFT_PADDING = 50;
-SQUARE_HEIGHT = 125;
-SQUARE_WIDTH = 125;
+SQUARE_HEIGHT = 80;
+SQUARE_WIDTH = 80;
 
 class Node {
     constructor(symbol, probability, col, row, parent) {
