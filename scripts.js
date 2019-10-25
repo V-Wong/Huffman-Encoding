@@ -23,12 +23,15 @@ let round = function(num) {
 let getInput = function() {
     let inputs = document.getElementsByClassName("code-input");
 
-    return [
-        new SquareNode("0", parseFloat(inputs[0].value), 0, 0),
-        new SquareNode("0", parseFloat(inputs[1].value), 0, 0),
-        new SquareNode("0", parseFloat(inputs[2].value), 0, 0),
-        new SquareNode("0", parseFloat(inputs[3].value), 0, 0),
-    ]
+    let returnInput = [];
+
+    for (let input of inputs) {
+        if (input.value) {
+            returnInput.push(new SquareNode("0", parseFloat(input.value), 0, 0));
+        }
+    }
+
+    return returnInput;
 }
 
 document.getElementById("submit").addEventListener("click", (event) => {
