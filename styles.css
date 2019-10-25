@@ -26,17 +26,19 @@ body {
 }
 
 .controls {
+    padding-left: 1%;
     margin-right: 50px;
     width: 25%;
     background-color: #363636;
 }
 
+
 .buttons {
     margin: 0;
-    width: 12.5%;
+    width: 13%;
 }
 
 .encoding-text {
-    margin-left: 10px;
+    margin-left: 5%;
     display: inline-block;
 }
