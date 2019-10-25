@@ -1,6 +1,7 @@
-LEFT_PADDING = 50;
-SQUARE_HEIGHT = 80;
-SQUARE_WIDTH = 80;
+TOP_PADDING = 40;
+LEFT_PADDING = 40;
+SQUARE_HEIGHT = window.innerHeight/10;
+SQUARE_WIDTH = window.innerHeight/10;
 
 class Node {
     constructor(symbol, probability, col, row, parent) {
@@ -16,7 +17,7 @@ class Node {
         return LEFT_PADDING + this.col * SQUARE_WIDTH * 4;
     }
     get getY() {
-        return LEFT_PADDING + this.row * SQUARE_HEIGHT * 2;
+        return TOP_PADDING + this.row * SQUARE_HEIGHT * 2;
     }
     drawLink() {
         this.ctx.strokeStyle = "white";
