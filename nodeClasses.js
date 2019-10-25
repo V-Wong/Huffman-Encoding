@@ -1,7 +1,7 @@
 TOP_PADDING = 40;
 LEFT_PADDING = 40;
-SQUARE_HEIGHT = window.innerHeight/10;
-SQUARE_WIDTH = window.innerHeight/10;
+SQUARE_HEIGHT = document.getElementById("canvas").clientHeight/8;
+SQUARE_WIDTH = document.getElementById("canvas").clientHeight/8;
 
 class Node {
     constructor(symbol, probability, col, row, parent) {
