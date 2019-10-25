@@ -13,7 +13,7 @@ class Node {
         this.ctx = this.canvas.getContext("2d");
     }
     get getX() {
-        return LEFT_PADDING + this.col * SQUARE_WIDTH * 2;
+        return LEFT_PADDING + this.col * SQUARE_WIDTH * 4;
     }
     get getY() {
         return LEFT_PADDING + this.row * SQUARE_HEIGHT * 2;

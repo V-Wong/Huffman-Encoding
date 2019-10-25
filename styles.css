@@ -1,28 +1,33 @@
-body {
+html {
     height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 95%;
+    width: 95%;
     background-color: #282828;
     color: white;
 }
 
 #canvas {
-    height: 600px;
-    width: 70%;
+    height: 80%;
+    width: 100%;
     background-color: #363636;
+}
+
+#control-panel {
+    height: 20%;
+    width: 100%;
 }
 
 .controls {
     float: left;
     margin-right: 50px;
     width: 20%;
-    height: 50px;
     background-color: #363636;
 }
 
 .code-input {
     float: right;
-}
-
-#control-panel {
-    height: 50px;
-    width: 100%;
 }
