@@ -20,6 +20,31 @@ let round = function(num) {
     return Math.round(num * 100) / 100;
 }
 
+let generateInputFields = function(num) {
+    for (let i = 0; i < num; i++) {
+        let container = document.createElement("div");
+        container.classList.add("controls");
+
+        let input = document.createElement("input");
+        input.type = "text";
+        input.id = `symbol${num}`;
+        input.classList.add("code-input");
+
+        input.placeholder = `Probability for symbol ${i}`
+
+        container.appendChild(input);
+        document.getElementById("control-panel").appendChild(container);
+    }
+
+    let submitButton = document.createElement("input");
+    submitButton.classList.add("controls");
+    submitButton.type = "button";
+    submitButton.id = "submit";
+    submitButton.value = "Submit";
+
+    document.getElementById("control-panel").appendChild(submitButton);
+}
+
 let getInput = function() {
     let inputs = document.getElementsByClassName("code-input");
 
@@ -33,6 +58,8 @@ let getInput = function() {
 
     return returnInput;
 }
+
+generateInputFields(8);
 
 document.getElementById("submit").addEventListener("click", (event) => {
     event.preventDefault();
