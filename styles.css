@@ -30,3 +30,8 @@ body {
     width: 25%;
     background-color: #363636;
 }
+
+.encoding-text {
+    margin-left: 10px;
+    display: inline-block;
+}

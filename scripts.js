@@ -27,12 +27,16 @@ let generateInputFields = function(num) {
 
         let input = document.createElement("input");
         input.type = "text";
-        input.id = `symbol${num}`;
+        input.id = `symbol${i}`;
         input.classList.add("code-input");
-
         input.placeholder = `Probability for symbol ${i}`
-
         container.appendChild(input);
+
+        let text = document.createElement("p");
+        text.innerText = "Encoding: ";
+        text.classList.add("encoding-text")
+        container.appendChild(text);
+
         document.getElementById("control-panel").appendChild(container);
     }
 
@@ -43,6 +47,11 @@ let generateInputFields = function(num) {
     submitButton.value = "Submit";
 
     document.getElementById("control-panel").appendChild(submitButton);
+}
+
+let setEncodingText = function(symbol) {
+    let container = document.getElementById(`symbol${symbol}`).parentElement;
+
 }
 
 let getInput = function() {
@@ -60,6 +69,7 @@ let getInput = function() {
 }
 
 generateInputFields(8);
+setEncodingText(0);
 
 document.getElementById("submit").addEventListener("click", (event) => {
     event.preventDefault();
