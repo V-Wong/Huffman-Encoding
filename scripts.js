@@ -1,3 +1,5 @@
+TOLERANCE = 0.00001
+
 let main = function(nodes) {
     setupCanvas();
 
@@ -112,7 +114,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
     event.preventDefault();
     let nodes = getInput();
     if (nodes.length > 1) {
-        if (sumProbabilities(nodes) === 1) {
+        if (Math.abs(sumProbabilities(nodes) - 1) < TOLERANCE) {
             main(nodes);
         } else {
             window.alert("Please ensure probablities sum to 1");
