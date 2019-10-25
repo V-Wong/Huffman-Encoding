@@ -5,7 +5,11 @@ let main = function(nodes) {
 
     nodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
 
-    huffmanEncode(nodes);
+    let newNodes = huffmanEncode(nodes);
+
+    let root = newNodes[newNodes.length - 1][0];
+    dfTraversal(root, "");
+    writeEncoding(nodes);
 }
 
 let setupCanvas = function() {
@@ -49,29 +53,35 @@ let generateInputFields = function(num) {
     document.getElementById("control-panel").appendChild(submitButton);
 }
 
-let setEncodingText = function(symbol) {
-    let container = document.getElementById(`symbol${symbol}`).parentElement;
-
-}
-
 let getInput = function() {
     let inputs = document.getElementsByClassName("code-input");
 
     let returnInput = [];
 
+    let i = 0;
     for (let input of inputs) {
         if (input.value) {
-            returnInput.push(new SquareNode("0", parseFloat(input.value), 0, 0));
+            returnInput.push(new SquareNode(i, parseFloat(input.value), 0, 0));
         }
+        i++;
     }
 
     return returnInput;
 }
 
+let writeEncoding = function(nodes) {
+    console.log(nodes);
+
+    for (let node of nodes) {
+        let element = document.getElementsByClassName("encoding-text")[node.symbol];
+        element.innerText = `Encoding: ${node.encoding}`;
+    }
+}
+
 generateInputFields(8);
-setEncodingText(0);
 
 document.getElementById("submit").addEventListener("click", (event) => {
     event.preventDefault();
-    main(getInput());
+    let nodes = getInput();
+    main(nodes);
 });

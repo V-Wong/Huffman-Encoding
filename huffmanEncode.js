@@ -26,12 +26,14 @@ let huffmanEncode = function(nodes) {
 }
 
 let circleAboveSquares = function(nodes) {
-    for (let i = 0; i < nodes.length - 1; i++) {
-        if (nodes[i].probability == nodes[i + 1].probability
-                && nodes[i + 1].constructor.name == "CircleNode") {
-            let temp = nodes[i];
-            nodes[i] = nodes[i + 1];
-            nodes[i + 1] = temp;
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = 0; j < nodes.length - 1; j++) {
+            if (nodes[j].probability == nodes[j + 1].probability
+                    && nodes[j + 1].constructor.name == "CircleNode") {
+                let temp = nodes[j];
+                nodes[j] = nodes[j + 1];
+                nodes[j + 1] = temp;
+            }
         }
     }
 
@@ -57,4 +59,15 @@ let genNewColumn = function(nodes) {
     newNodes = circleAboveSquares(newNodes);
 
     return newNodes;
+}
+
+let dfTraversal = function(root, encoding) {
+    if (!root.parent || !root) {
+        root.encoding = encoding;
+    } else if (root.constructor.name == "SquareNode") {
+        dfTraversal(root.parent[0], encoding);
+    } else {
+        dfTraversal(root.parent[1], encoding + "0");
+        dfTraversal(root.parent[0], encoding + "1");
+    }
 }
