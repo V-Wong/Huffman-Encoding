@@ -1,3 +1,4 @@
+LEFT_PADDING = 50;
 SQUARE_HEIGHT = 125;
 SQUARE_WIDTH = 125;
 
@@ -12,10 +13,10 @@ class Node {
         this.ctx = this.canvas.getContext("2d");
     }
     get getX() {
-        return 10 + this.col * SQUARE_WIDTH * 2;
+        return LEFT_PADDING + this.col * SQUARE_WIDTH * 2;
     }
     get getY() {
-        return 10 + this.row * SQUARE_HEIGHT * 2;
+        return LEFT_PADDING + this.row * SQUARE_HEIGHT * 2;
     }
     drawLink() {
         this.ctx.strokeStyle = "white";
