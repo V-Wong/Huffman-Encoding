@@ -67,5 +67,9 @@ class CircleNode extends Node {
         this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
         this.ctx.lineTo(this.parent[1].getX + SQUARE_WIDTH, this.parent[1].getY + SQUARE_HEIGHT/2);
         this.ctx.stroke();
+
+        this.ctx.font = "30px Arial";
+        this.ctx.fillText(0, this.getX - 25, this.getY + 60);
+        this.ctx.fillText(1, this.getX - 25, this.getY + 150);
     }
 }
