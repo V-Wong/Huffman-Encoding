@@ -31,6 +31,11 @@ body {
     background-color: #363636;
 }
 
+.buttons {
+    margin: 0;
+    width: 12.5%;
+}
+
 .encoding-text {
     margin-left: 10px;
     display: inline-block;

@@ -56,11 +56,21 @@ let generateInputFields = function(num) {
 
     let submitButton = document.createElement("input");
     submitButton.classList.add("controls");
+    submitButton.classList.add("buttons");
     submitButton.type = "button";
     submitButton.id = "submit";
     submitButton.value = "Submit";
 
+    let clearButton = document.createElement("input");
+    clearButton.classList.add("controls");
+    clearButton.classList.add("buttons");
+    clearButton.type = "button";
+    clearButton.id = "clear";
+    clearButton.value = "Clear";
+
+
     document.getElementById("control-panel").appendChild(submitButton);
+    document.getElementById("control-panel").appendChild(clearButton);
 }
 
 let getInput = function() {
@@ -77,6 +87,14 @@ let getInput = function() {
     }
 
     return returnInput;
+}
+
+let clearInput = function() {
+    let inputs = document.getElementsByClassName("code-input");
+
+    for (let input of inputs) {
+        input.value = "";
+    }
 }
 
 let writeEncoding = function(nodes) {
@@ -103,3 +121,8 @@ document.getElementById("submit").addEventListener("click", (event) => {
         window.alert("Please input at least 2 symbols");
     }
 });
+
+document.getElementById("clear").addEventListener("click", (event) => {
+    event.preventDefault();
+    clearInput();
+})
