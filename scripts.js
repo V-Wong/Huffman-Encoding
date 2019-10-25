@@ -62,6 +62,7 @@ let generateInputFields = function(num) {
     submitButton.type = "button";
     submitButton.id = "submit";
     submitButton.value = "Submit";
+    submitButton.style.backgroundColor = "#4CAF50";
 
     let clearButton = document.createElement("input");
     clearButton.classList.add("controls");
@@ -69,7 +70,7 @@ let generateInputFields = function(num) {
     clearButton.type = "button";
     clearButton.id = "clear";
     clearButton.value = "Clear";
-
+    clearButton.style.marginLeft = "2%";
 
     document.getElementById("control-panel").appendChild(submitButton);
     document.getElementById("control-panel").appendChild(clearButton);

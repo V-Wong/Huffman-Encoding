@@ -34,8 +34,11 @@ body {
 
 
 .buttons {
+    color: white;
+    background-color: #f44336;
+    border: none;
     margin: 0;
-    width: 13%;
+    width: 12%;
 }
 
 .encoding-text {
