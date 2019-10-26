@@ -1,5 +1,5 @@
 TOP_PADDING = document.getElementById("canvas").height/10;
-LEFT_PADDING = document.getElementById("canvas").height/10;
+LEFT_PADDING = document.getElementById("canvas").height/4;
 SQUARE_HEIGHT = document.getElementById("canvas").height/4;
 SQUARE_WIDTH = document.getElementById("canvas").height/4;
 
@@ -18,6 +18,11 @@ class Node {
     }
     get getY() {
         return TOP_PADDING + this.row * SQUARE_HEIGHT * 2;
+    }
+    writeSymbol() {
+        this.ctx.strokeStyle = "white";
+        this.ctx.font = "18px Arial";
+        this.ctx.fillText(`S${this.symbol}`, this.getX - SQUARE_HEIGHT/2, this.getY + SQUARE_HEIGHT/2);
     }
     drawLink() {
         this.ctx.strokeStyle = "white";

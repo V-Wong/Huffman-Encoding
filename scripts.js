@@ -8,6 +8,7 @@ let main = function(nodes) {
     nodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
 
     huffmanEncode(nodes);
+    writeSymbols(nodes);
     writeEncoding(nodes);
 }
 
@@ -93,6 +94,13 @@ let clearInput = function() {
 
     for (let input of inputs) {
         input.value = "";
+    }
+}
+
+let writeSymbols = function(nodes) {
+    for (let node of nodes) {
+        console.log(node);
+        node.writeSymbol();
     }
 }
 
