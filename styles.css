@@ -60,3 +60,10 @@ a {
     margin-left: 5%;
     display: inline-block;
 }
+
+input[type=text] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
