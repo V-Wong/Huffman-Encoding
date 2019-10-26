@@ -37,8 +37,10 @@ class SquareNode extends Node {
 
         this.ctx.fillStyle = "white";
         this.ctx.font = "30px Arial";
+        this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
         this.ctx.fillText(`${this.probability}`, 
-                     this.getX + SQUARE_WIDTH/2 - 25, 
+                     this.getX + SQUARE_WIDTH/2, 
                      this.getY + SQUARE_HEIGHT/2);
     }
 }
@@ -52,8 +54,10 @@ class CircleNode extends Node {
 
         this.ctx.fillStyle = "white";
         this.ctx.font = "30px Arial";
+        this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
         this.ctx.fillText(`${this.probability}`, 
-                     this.getX + SQUARE_WIDTH/2 - 25, 
+                     this.getX + SQUARE_WIDTH/2, 
                      this.getY + SQUARE_HEIGHT/2);
     }
     drawLink() {
@@ -69,8 +73,8 @@ class CircleNode extends Node {
         this.ctx.lineTo(this.parent[1].getX + SQUARE_WIDTH, this.parent[1].getY + SQUARE_HEIGHT/2);
         this.ctx.stroke();
 
-        this.ctx.font = "30px Arial";
-        this.ctx.fillText(0, this.getX - 25, this.getY + 60);
-        this.ctx.fillText(1, this.getX - 25, this.getY + 150);
+        this.ctx.font = "24px Arial";
+        this.ctx.fillText(0, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.3);
+        this.ctx.fillText(1, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.8);
     }
 }
