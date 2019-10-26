@@ -7,10 +7,7 @@ let main = function(nodes) {
 
     nodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
 
-    let newNodes = huffmanEncode(nodes);
-
-    let root = newNodes[newNodes.length - 1][0];
-    dfTraversal(root, "");
+    huffmanEncode(nodes);
     writeEncoding(nodes);
 }
 
