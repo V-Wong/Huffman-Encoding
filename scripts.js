@@ -17,9 +17,8 @@ let main = function(nodes) {
 let setupCanvas = function() {
     let canvas = document.getElementById("canvas");
     let rect = canvas.getBoundingClientRect();
-    let dpr = window.devicePixelRatio || 1;
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+    canvas.width = rect.width;
+    canvas.height = rect.height;
 }
 
 let round = function(num) {
@@ -70,7 +69,7 @@ let generateInputFields = function(num) {
     clearButton.type = "button";
     clearButton.id = "clear";
     clearButton.value = "Clear";
-    clearButton.style.marginLeft = "2%";
+    clearButton.style.marginLeft = "1%";
 
     document.getElementById("control-panel").appendChild(submitButton);
     document.getElementById("control-panel").appendChild(clearButton);

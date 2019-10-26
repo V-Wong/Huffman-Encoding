@@ -1,7 +1,7 @@
-TOP_PADDING = 40;
-LEFT_PADDING = 40;
-SQUARE_HEIGHT = document.getElementById("canvas").clientHeight/8;
-SQUARE_WIDTH = document.getElementById("canvas").clientHeight/8;
+TOP_PADDING = document.getElementById("canvas").height/10;
+LEFT_PADDING = document.getElementById("canvas").height/10;
+SQUARE_HEIGHT = document.getElementById("canvas").height/4;
+SQUARE_WIDTH = document.getElementById("canvas").height/4;
 
 class Node {
     constructor(symbol, probability, col, row, parent) {
@@ -36,7 +36,7 @@ class SquareNode extends Node {
         this.ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
 
         this.ctx.fillStyle = "white";
-        this.ctx.font = "30px Arial";
+        this.ctx.font = "22px Arial";
         this.ctx.textAlign = "center";
         this.ctx.textBaseline = "middle";
         this.ctx.fillText(`${this.probability}`, 
@@ -53,7 +53,7 @@ class CircleNode extends Node {
         this.ctx.fill();
 
         this.ctx.fillStyle = "white";
-        this.ctx.font = "30px Arial";
+        this.ctx.font = "22px Arial";
         this.ctx.textAlign = "center";
         this.ctx.textBaseline = "middle";
         this.ctx.fillText(`${this.probability}`, 
@@ -73,8 +73,8 @@ class CircleNode extends Node {
         this.ctx.lineTo(this.parent[1].getX + SQUARE_WIDTH, this.parent[1].getY + SQUARE_HEIGHT/2);
         this.ctx.stroke();
 
-        this.ctx.font = "24px Arial";
+        this.ctx.font = "18px Arial";
         this.ctx.fillText(0, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.3);
-        this.ctx.fillText(1, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.8);
+        this.ctx.fillText(1, this.getX - 5, this.getY + SQUARE_HEIGHT);
     }
 }
