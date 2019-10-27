@@ -33,6 +33,13 @@ class Node {
         this.ctx.stroke();
         this.ctx.setLineDash([0]);
     }
+    tracePath(parent) {
+        this.ctx.strokeStyle = "red";
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
+        this.ctx.lineTo(this.parent[parent].getX + SQUARE_WIDTH, this.parent[parent].getY + SQUARE_HEIGHT/2);
+        this.ctx.stroke();
+    }
 }
 
 class SquareNode extends Node {

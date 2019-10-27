@@ -1,15 +1,20 @@
 TOLERANCE = 0.00001
+SUBMITTED = false;
 
-let main = function(nodes) {
+let main = function(nodes, encoding) {
     setupCanvas();
 
     console.log(nodes);
 
     nodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
 
-    huffmanEncode(nodes);
+    let root = huffmanEncode(nodes);
     writeSymbols(nodes);
     writeEncoding(nodes);
+
+    if (encoding != undefined) {
+        tracePath(root, encoding);
+    }
 }
 
 let setupCanvas = function() {
@@ -120,7 +125,8 @@ document.getElementById("submit").addEventListener("click", (event) => {
     let nodes = getInput();
     if (nodes.length > 1) {
         if (Math.abs(sumProbabilities(nodes) - 1) < TOLERANCE) {
-            main(nodes);
+            main(nodes, undefined);
+            SUBMITTED = true;
         } else {
             window.alert("Please ensure probablities sum to 1");
         }
@@ -128,6 +134,18 @@ document.getElementById("submit").addEventListener("click", (event) => {
         window.alert("Please input at least 2 symbols");
     }
 });
+
+let encodingText = document.getElementsByClassName("encoding-text");
+console.log(encodingText);
+
+for (let element of encodingText) {
+    element.addEventListener("mouseover", () => {
+        let nodes = getInput();
+        if (SUBMITTED) {
+            main(nodes, element.innerText.replace("Encoding: ", ""));
+        }
+    });
+}
 
 document.getElementById("clear").addEventListener("click", (event) => {
     event.preventDefault();

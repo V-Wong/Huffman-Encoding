@@ -38,7 +38,7 @@ let huffmanEncode = function(nodes) {
     let root = levels[levels.length - 1][0];
     dfTraversal(root, "");
 
-    return levels;
+    return root;
 }
 
 // For nodes of equal probability, store the circle node
@@ -75,7 +75,7 @@ let genNewLevel = function(nodes) {
     // Create a circle node which is the combination of the two min nodes.
     newLevel[newLevel.length] = new CircleNode(minNode1.symbol + minNode2.symbol, 
                                                round(minNode1.probability + minNode2.probability),
-                                               newLevel.length, newLevel.length, [minNode1, minNode2]);
+                                               newLevel.length, newLevel.length, [minNode2, minNode1]);
 
 
     // Sort the new level, then place circle node above square nodes.
@@ -96,7 +96,22 @@ let dfTraversal = function(root, encoding) {
     } else if (root.constructor.name == "SquareNode") {
         dfTraversal(root.parent[0], encoding);
     } else {
-        dfTraversal(root.parent[1], encoding + "0");
-        dfTraversal(root.parent[0], encoding + "1");
+        dfTraversal(root.parent[0], encoding + "0");
+        dfTraversal(root.parent[1], encoding + "1");
+    }
+}
+
+let tracePath = function(root, encoding) {
+    let i = 0;
+    while (root.parent) {
+        if (root.parent.length == 2) {
+            console.log(encoding[i]);
+            root.tracePath(encoding[i]);
+            root = root.parent[encoding[i]];
+            i++;
+        } else {
+            root.tracePath(0);
+            root = root.parent[0];
+        }
     }
 }
