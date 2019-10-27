@@ -15,6 +15,15 @@ a {
     color: white;
 }
 
+p {
+    margin-top: 5;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 #canvas {
     height: 79%;
     width: 100%;
