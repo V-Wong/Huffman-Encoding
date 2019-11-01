@@ -26,7 +26,8 @@ let main = function() {
         }
     });
 
-    for (let element of document.getElementsByClassName("encoding-text")) {
+    let encodingLabels = document.getElementsByClassName("encoding-text");
+    for (let element of encodingLabels) {
         element.addEventListener("mouseover", () => {
             let nodes = getInput();
             if (SUBMITTED) {
@@ -38,6 +39,13 @@ let main = function() {
                 writeEncoding(nodes);
             
                 tracePath(root, element.innerText.replace("Encoding: ", ""));
+                element.style.color = "red";
+                
+                for (let otherElement of encodingLabels) {
+                    if (otherElement !== element) {
+                        otherElement.style.color = "white";
+                    }
+                }
             }
         });
     }
