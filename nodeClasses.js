@@ -24,15 +24,6 @@ class Node {
         this.ctx.font = "18px Arial";
         this.ctx.fillText(`S${this.symbol}`, this.getX - SQUARE_HEIGHT/2, this.getY + SQUARE_HEIGHT/2);
     }
-    drawLink() {
-        this.ctx.strokeStyle = "white";
-        this.ctx.setLineDash([5, 3]);
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
-        this.ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
-        this.ctx.stroke();
-        this.ctx.setLineDash([0]);
-    }
     tracePath(parent) {
         this.ctx.strokeStyle = "red";
         this.ctx.beginPath();
@@ -54,6 +45,15 @@ class SquareNode extends Node {
         this.ctx.fillText(`${this.probability}`, 
                      this.getX + SQUARE_WIDTH/2, 
                      this.getY + SQUARE_HEIGHT/2);
+    }
+    drawLink() {
+        this.ctx.strokeStyle = "white";
+        this.ctx.setLineDash([5, 3]);
+        this.ctx.beginPath();
+        this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT/2);
+        this.ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT/2);
+        this.ctx.stroke();
+        this.ctx.setLineDash([0]);
     }
 }
 

@@ -12,17 +12,16 @@ let huffmanEncode = function(nodes) {
 
     // Progressively generate new levels (Huffman levels)
     // until we get a level with only a single node.
-    let i = 0;
-    while (newLevel.length > 1) {
-        for (let j = 0; j < newLevel.length; j++) {
-            newLevel[j].row = j;
-            newLevel[j].col = i;
-            newLevel[j].draw();
-            if (newLevel[j].parent != undefined) {
-                newLevel[j].drawLink();
+
+    for (let col = 0; newLevel.length > 1; col++) {
+        for (let row = 0; row < newLevel.length; row++) {
+            newLevel[row].row = row;
+            newLevel[row].col = col;
+            newLevel[row].draw();
+            if (newLevel[row].parent != undefined) {
+                newLevel[row].drawLink();
             }
         }
-        i++;
         newLevel = genNewLevel(newLevel);
         levels.push(newLevel);
     }
@@ -68,15 +67,14 @@ let genNewLevel = function(nodes) {
     // Copy all the nodes from the previous level
     // excluding the two min nodes.
     for (let i = 0; i < nodes.length - 2; i++) {
-        newLevel[i] = new SquareNode(nodes[i].symbol, nodes[i].probability, 
-                                     i, i, [nodes[i]]);
+        newLevel.push(new SquareNode(nodes[i].symbol, 
+                      nodes[i].probability, i, i, [nodes[i]]));
     }
 
     // Create a circle node which is the combination of the two min nodes.
-    newLevel[newLevel.length] = new CircleNode(minNode1.symbol + minNode2.symbol, 
-                                               round(minNode1.probability + minNode2.probability),
-                                               newLevel.length, newLevel.length, [minNode2, minNode1]);
-
+    newLevel.push(new CircleNode(minNode1.symbol + minNode2.symbol, 
+                  round(minNode1.probability + minNode2.probability),
+                  newLevel.length, newLevel.length, [minNode2, minNode1]));
 
     // Sort the new level, then place circle node above square nodes.
     newLevel.sort((a, b) => a.probability <= b.probability ? 1 : -1);
