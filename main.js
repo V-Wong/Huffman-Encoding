@@ -113,8 +113,12 @@ let generateInputFields = function(num) {
     clearButton.value = "Clear";
     clearButton.style.marginLeft = "1%";
 
-    document.getElementById("control-panel").appendChild(submitButton);
-    document.getElementById("control-panel").appendChild(clearButton);
+    let buttonsContainer = document.createElement("div");
+    buttonsContainer.classList.add("buttons-container");
+    buttonsContainer.appendChild(submitButton);
+    buttonsContainer.appendChild(clearButton);
+
+    document.getElementById("control-panel").appendChild(buttonsContainer);
 }
 
 let getInput = function() {

@@ -2,13 +2,16 @@ html {
     font-family: 'Nunito', sans-serif;
     height: 100%;
     width: 100%;
+    padding: none;
+    margin: none;
 }
 
 body {
     height: 95%;
-    width: 99%;
     background-color: #282828;
     color: white;
+    padding: none;
+    margin: none;
 }
 
 a {
@@ -20,39 +23,41 @@ p {
 }
 
 h3 {
-    margin-top: 0;
+    margin-top: 2px;
     margin-bottom: 0;
 }
 
 #canvas {
-    height: 79%;
+    height: 80%;
     width: 100%;
     background-color: #363636;
 }
 
+#bottom-panel {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    height: 20%;
+}
+
 #control-panel {
     float: left;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: top;
-    height: 21%;
-    width: 75%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 #description {
     float: left;
-    width: 25%;
-    height: 21%;
     background-color: #363636;
     text-align: center;
 }
 
 .controls {
     float: left;
-    padding-left: 1%;
-    width: 32%;
     background-color: #363636;
+}
+
+.buttons-container {
+    display: flex;
 }
 
 .buttons {
@@ -60,8 +65,7 @@ h3 {
     color: white;
     background-color: #f44336;
     border: none;
-    margin-left: 0px;
-    width: 16%;
+    width: 50%;
 }
 
 .encoding-text {
