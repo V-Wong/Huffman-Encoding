@@ -70,7 +70,7 @@ h3 {
 
 .encoding-text {
     padding-right: 1%;
-    margin-left: 5%;
+    margin-left: 3%;
     display: inline-block;
 }
 
@@ -78,5 +78,29 @@ input[type=text] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical;
+    width: 10vw;
+}
+
+@media (max-width: 1080px) {
+    #bottom-panel {
+        grid-template-columns: 1fr;
+    }
+
+    #control-panel {
+        float: left;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    input[type=text] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 95%;
+        margin-left: auto;
+    }
+
+    .buttons {
+        height: 50px;
+    }
 }
