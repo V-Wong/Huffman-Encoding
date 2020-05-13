@@ -57,10 +57,9 @@ let main = function() {
 }
 
 let setupCanvas = function() {
-    let canvas = document.getElementById("canvas");
-    let rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
+    const canvas = document.getElementById("canvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }
 
 let round = function(num) {
