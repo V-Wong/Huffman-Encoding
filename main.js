@@ -58,8 +58,8 @@ let main = function() {
 
 let setupCanvas = function() {
     const canvas = document.getElementById("canvas");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth * 1.25;
+    canvas.height = window.innerHeight * 1.25;
 }
 
 let round = function(num) {
