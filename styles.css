@@ -26,10 +26,11 @@ h3 {
     margin-bottom: 0;
 }
 
-.container {
+.my-container {
     display: grid;
     grid-template-columns: 9fr 1fr;
     column-gap: 1%;
+    margin: 1%;
 }
 
 #canvas {
