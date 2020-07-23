@@ -63,6 +63,15 @@ h2 {
     background-color: #f44336;
     border: none;
     width: 50%;
+    margin-top: 10px;
+}
+
+#submit {
+    border-bottom-left-radius: 3px;
+}
+
+#clear {
+    border-bottom-right-radius: 3px;
 }
 
 .encoding-text {
@@ -100,6 +109,5 @@ input[type=text] {
 
     .buttons {
         height: 50px;
-        border-radius: 3px;
     }
 }

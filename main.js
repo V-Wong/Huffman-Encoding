@@ -110,7 +110,6 @@ let generateInputFields = function(num) {
     clearButton.type = "button";
     clearButton.id = "clear";
     clearButton.value = "Clear";
-    clearButton.style.marginLeft = "1%";
 
     let buttonsContainer = document.createElement("div");
     buttonsContainer.classList.add("buttons-container");
