@@ -50,7 +50,7 @@ h2 {
 .controls {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 30px 25px;
+    grid-template-rows: 30px 30px;
 }
 
 .buttons-container {
@@ -75,8 +75,9 @@ h2 {
 }
 
 .encoding-text {
-    margin: 0;
     margin-left: 1vw;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 input[type=text] {
