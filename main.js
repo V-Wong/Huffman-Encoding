@@ -77,52 +77,32 @@ let sumProbabilities = function(array) {
 }
 
 let generateInputFields = function(num) {
+    const buttonsContainer = document.getElementsByClassName("buttons-container")[0];
+
     for (let i = 0; i < num; i++) {
-        let container = document.createElement("div");
+        const container = document.createElement("div");
         container.classList.add("controls");
 
-        let input = document.createElement("input");
+        const input = document.createElement("input");
         input.type = "text";
         input.id = `symbol${i}`;
         input.classList.add("code-input");
         input.placeholder = `Probability for symbol ${i}`
         container.appendChild(input);
 
-        let text = document.createElement("p");
+        const text = document.createElement("p");
         text.innerText = "Encoding: ";
         text.classList.add("encoding-text")
         container.appendChild(text);
 
-        document.getElementById("control-panel").appendChild(container);
+        document.getElementById("control-panel").insertBefore(container, buttonsContainer);
     }
-
-    let submitButton = document.createElement("input");
-    submitButton.classList.add("controls");
-    submitButton.classList.add("buttons");
-    submitButton.type = "button";
-    submitButton.id = "submit";
-    submitButton.value = "Submit";
-    submitButton.style.backgroundColor = "#4CAF50";
-
-    let clearButton = document.createElement("input");
-    clearButton.classList.add("controls");
-    clearButton.classList.add("buttons");
-    clearButton.type = "button";
-    clearButton.id = "clear";
-    clearButton.value = "Clear";
-
-    let buttonsContainer = document.createElement("div");
-    buttonsContainer.classList.add("buttons-container");
-    buttonsContainer.appendChild(submitButton);
-    buttonsContainer.appendChild(clearButton);
-
-    document.getElementById("control-panel").appendChild(buttonsContainer);
 }
 
 let getInput = function() {
-    let inputs = document.getElementsByClassName("code-input");
+    const inputs = document.getElementsByClassName("code-input");
 
-    let returnInput = [];
+    const returnInput = [];
 
     let i = 0;
     for (let input of inputs) {
@@ -145,14 +125,11 @@ let clearInput = function() {
 
 let writeSymbols = function(nodes) {
     for (let node of nodes) {
-        console.log(node);
         node.writeSymbol();
     }
 }
 
 let writeEncoding = function(nodes) {
-    console.log(nodes);
-
     for (let node of nodes) {
         let element = document.getElementsByClassName("encoding-text")[node.symbol];
         element.innerText = `Encoding: ${node.encoding}`;
