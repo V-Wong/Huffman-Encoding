@@ -62,10 +62,6 @@ let setupCanvas = function () {
   canvas.height = window.innerHeight;
 }
 
-let round = function (num) {
-  return Math.round(num * 100) / 100;
-}
-
 let sumProbabilities = function (array) {
   let sum = 0;
 

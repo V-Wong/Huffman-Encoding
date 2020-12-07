@@ -1,7 +1,7 @@
-const TOP_PADDING = document.getElementById("canvas").height / 10;
-const LEFT_PADDING = document.getElementById("canvas").height / 4;
-const SQUARE_HEIGHT = document.getElementById("canvas").height / 4;
-const SQUARE_WIDTH = document.getElementById("canvas").height / 4;
+const TOP_PADDING = 0;
+const LEFT_PADDING = 10;
+const SQUARE_HEIGHT = 30;
+const SQUARE_WIDTH = 30;
 
 class Node {
   constructor(symbol, probability, col, row, parent) {
@@ -10,14 +10,17 @@ class Node {
     this.col = col;
     this.row = row;
     this.parent = parent;
-    this.canvas = document.getElementById("canvas");
-    this.ctx = this.canvas.getContext("2d");
+    this.encoding = "";
   }
   get getX() {
     return LEFT_PADDING + this.col * SQUARE_WIDTH * 4;
   }
   get getY() {
     return TOP_PADDING + this.row * SQUARE_HEIGHT * 2;
+  }
+  set canvas(canvas) {
+    this._canvas = canvas;
+    this.ctx = this._canvas.getContext("2d");
   }
   writeSymbol() {
     this.ctx.strokeStyle = "white";
@@ -92,4 +95,4 @@ class CircleNode extends Node {
 }
 
 export default Node;
-export { SquareNode };
+export { SquareNode, CircleNode };

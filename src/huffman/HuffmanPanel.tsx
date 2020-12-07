@@ -5,8 +5,8 @@ import Canvas from "./Canvas";
 import { SquareNode } from "./nodeClasses";
 
 function HuffmanPanel() {
-  const nodesList = [new SquareNode(0.5), new SquareNode(0.5)];
-
+  const nodesList = [new SquareNode("1", 0.4, 0, 0), new SquareNode("2", 0.3, 0, 0), new SquareNode("3", 0.3, 0, 0)];
+  
   return (
     <Container>
       <Row>
