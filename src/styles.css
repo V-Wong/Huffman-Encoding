@@ -1,0 +1,115 @@
+html {
+    font-family: 'Nunito', sans-serif;
+    height: 100%;
+    width: 100%;
+    padding: none;
+    margin: none;
+}
+
+body {
+    background-color: #282828;
+    color: white;
+    padding: none;
+    margin: none;
+}
+
+a {
+    color: white;
+}
+
+p {
+    margin-top: 5;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+.my-container {
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    column-gap: 1%;
+    margin: 1%;
+    max-height: 100%;
+}
+
+#canvas {
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    background-color: #363636;
+}
+
+#control-panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 3px;
+    background-color: #363636;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px 30px;
+}
+
+.buttons-container {
+    display: flex;
+}
+
+.buttons {
+    float: left;
+    color: white;
+    background-color: #f44336;
+    border: none;
+    width: 50%;
+    margin-top: 10px;
+}
+
+#submit {
+    border-bottom-left-radius: 3px;
+    background-color: rgb(76, 175, 80);
+}
+
+#clear {
+    border-bottom-right-radius: 3px;
+}
+
+.encoding-text {
+    margin-left: 1vw;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+input[type=text] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1080px) {
+    #bottom-panel {
+        grid-template-columns: 1fr;
+    }
+
+    #control-panel {
+        float: left;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    input[type=text] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 95%;
+        margin-left: auto;
+    }
+
+    .buttons {
+        height: 50px;
+    }
+}
