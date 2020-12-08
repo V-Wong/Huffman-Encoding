@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 
-import Node, { SquareNode } from "./nodeClasses";
-import huffmanEncode from "./huffmanEncode";
+import { SquareNode } from "./nodeClasses";
+import huffmanEncode, { tracePath } from "./huffmanEncode";
 
-function Canvas(props: { nodes: Array<SquareNode> }) {
+function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
   const canvasRef = useRef(null);
-  const { nodes } = props;
+  const { nodes, encoding } = props;
 
   useEffect(() => {
     if (canvasRef?.current) {
@@ -23,13 +23,15 @@ function Canvas(props: { nodes: Array<SquareNode> }) {
       for (const node of nodes)
         node.canvas = canvasRef.current;
 
-      if (nodes.length)
-        huffmanEncode(nodes, canvasRef.current);
+      if (nodes.length) {
+        const root = huffmanEncode(nodes, canvasRef.current);
+        if (encoding) tracePath(root, encoding);
+      }
     }
-  }, [canvasRef, nodes]);
+  }, [canvasRef, nodes, encoding]);
 
   return (
-    <canvas ref={canvasRef} style={{ backgroundColor: "black" }} />
+    <canvas id="canvas" ref={canvasRef} style={{ backgroundColor: "black" }} />
   );
 }
 

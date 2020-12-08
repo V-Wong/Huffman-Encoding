@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Canvas from "./Canvas";
@@ -8,6 +8,7 @@ function HuffmanPanel() {
   const [nodesList, setNodesList] = useState<Array<SquareNode>>([] as Array<SquareNode>);
   const [inputs, _] = useState([0, 0, 0, 0]);
   const [encodings, setEncodings] = useState(["", "", "", ""]);
+  const [selectedEncoding, setSelectedEncoding] = useState("");
 
   function handleSubmit() {
     const newNodes = inputs.filter(x => x)
@@ -24,7 +25,7 @@ function HuffmanPanel() {
     <Container fluid>
       <Row>
         <Col xs={9} style={{ height: "50vh" }}>
-          <Canvas nodes={nodesList} />
+          <Canvas nodes={nodesList} encoding={selectedEncoding} />
         </Col>
 
         <Col xs={3}>
@@ -32,8 +33,15 @@ function HuffmanPanel() {
           {
             inputs.map((_, i) => (
               <>
-                <p>Encoding: {encodings[i]}</p>
-                <input type="text" onChange={e => inputs[i] = parseFloat(e.target.value)}></input>
+                <p
+                  onMouseOver={() => setSelectedEncoding(encodings[i])}
+                >
+                  Encoding: {encodings[i]}
+                </p>
+                <input
+                  type="text"
+                  onChange={e => inputs[i] = parseFloat(e.target.value)}
+                />
               </>
             ))
           }
