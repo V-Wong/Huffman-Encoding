@@ -10,7 +10,7 @@ function HuffmanPanel() {
   return (
     <Container>
       <Row>
-        <Col xs={9}>
+        <Col xs={9} style={{height: "50vh"}}>
           <Canvas nodes={nodesList} />
         </Col>
 

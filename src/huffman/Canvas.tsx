@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-import Node, {SquareNode} from "./nodeClasses";
+import Node, { SquareNode } from "./nodeClasses";
 import huffmanEncode from "./huffmanEncode";
 
 function Canvas(props: { nodes: Array<SquareNode> }) {
@@ -13,6 +13,10 @@ function Canvas(props: { nodes: Array<SquareNode> }) {
       canvasRef.current.style.width = '100%';
       // @ts-ignore
       canvasRef.current.style.height = '100%';
+      // @ts-ignore
+      canvasRef.current.width = canvasRef.current.getBoundingClientRect().width;
+      // @ts-ignore
+      canvasRef.current.height = canvasRef.current.getBoundingClientRect().height;
     }
 
     if (canvasRef?.current !== null) {
@@ -24,7 +28,7 @@ function Canvas(props: { nodes: Array<SquareNode> }) {
   }, [canvasRef, nodes]);
 
   return (
-    <canvas ref={canvasRef} style={{backgroundColor: "black"}}/>
+    <canvas ref={canvasRef} style={{ backgroundColor: "black" }} />
   );
 }
 

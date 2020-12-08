@@ -1,7 +1,7 @@
 const TOP_PADDING = 0;
 const LEFT_PADDING = 10;
-const SQUARE_HEIGHT = 30;
-const SQUARE_WIDTH = 30;
+const SQUARE_HEIGHT = 50;
+const SQUARE_WIDTH = 50;
 
 class Node {
   constructor(symbol, probability, col, row, parent) {
@@ -42,7 +42,7 @@ class SquareNode extends Node {
     this.ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
 
     this.ctx.fillStyle = "white";
-    this.ctx.font = "22px Arial";
+    this.ctx.font = "18px Arial";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
     this.ctx.fillText(`${this.probability}`,
@@ -68,7 +68,7 @@ class CircleNode extends Node {
     this.ctx.fill();
 
     this.ctx.fillStyle = "white";
-    this.ctx.font = "22px Arial";
+    this.ctx.font = "18px Arial";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
     this.ctx.fillText(`${this.probability}`,
