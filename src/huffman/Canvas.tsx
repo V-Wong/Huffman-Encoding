@@ -20,10 +20,11 @@ function Canvas(props: { nodes: Array<SquareNode> }) {
     }
 
     if (canvasRef?.current !== null) {
-      for (const node of nodes) {
+      for (const node of nodes)
         node.canvas = canvasRef.current;
-      }
-      huffmanEncode(nodes, canvasRef.current);
+
+      if (nodes.length)
+        huffmanEncode(nodes, canvasRef.current);
     }
   }, [canvasRef, nodes]);
 
