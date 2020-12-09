@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, InputGroup } from "react-bootstrap";
 
 import Canvas from "./Canvas";
 import { SquareNode } from "./nodeClasses";
 
 function HuffmanPanel() {
   const [nodesList, setNodesList] = useState<Array<SquareNode>>([] as Array<SquareNode>);
-  const [inputs, _] = useState([0, 0, 0, 0]);
-  const [encodings, setEncodings] = useState(["", "", "", ""]);
+  const [inputs, _] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
+  const [encodings, setEncodings] = useState(["", "", "", "", "", "", "", ""]);
   const [selectedEncoding, setSelectedEncoding] = useState("");
 
   function handleSubmit() {
@@ -24,25 +24,27 @@ function HuffmanPanel() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={9} style={{ height: "50vh" }}>
+        <Col xs={10} style={{ height: "75vh" }}>
           <Canvas nodes={nodesList} encoding={selectedEncoding} />
         </Col>
 
-        <Col xs={3}>
+        <Col xs={2}>
           <h2 style={{ margin: "auto", marginBottom: "10px", marginTop: "10px" }}>Enter Symbols</h2>
           {
             inputs.map((_, i) => (
-              <>
-                <p
+              <InputGroup>
+                <InputGroup.Prepend
                   onMouseOver={() => setSelectedEncoding(encodings[i])}
                 >
-                  Encoding: {encodings[i]}
-                </p>
+                  <span className="input-group-text" style={{ width: "9rem" }}>
+                    Encoding: {encodings[i]}
+                  </span>
+                </InputGroup.Prepend>
                 <input
                   type="text"
                   onChange={e => inputs[i] = parseFloat(e.target.value)}
                 />
-              </>
+              </InputGroup>
             ))
           }
           <div className="buttons-container">

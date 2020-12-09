@@ -1,7 +1,7 @@
-const TOP_PADDING = 0;
-const LEFT_PADDING = 10;
-const SQUARE_HEIGHT = 50;
-const SQUARE_WIDTH = 50;
+const TOP_PADDING = 75;
+const LEFT_PADDING = 75;
+const SQUARE_HEIGHT = 75;
+const SQUARE_WIDTH = 75;
 
 class Node {
   constructor(symbol, probability, col, row, parent) {
@@ -28,7 +28,6 @@ class Node {
     this.ctx.fillText(`S${this.symbol}`, this.getX - SQUARE_HEIGHT / 2, this.getY + SQUARE_HEIGHT / 2);
   }
   tracePath(parent) {
-    console.log("test");
     this.ctx.strokeStyle = "red";
     this.ctx.beginPath();
     this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);

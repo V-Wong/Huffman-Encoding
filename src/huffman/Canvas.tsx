@@ -26,6 +26,9 @@ function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
       if (nodes.length) {
         const root = huffmanEncode(nodes, canvasRef.current);
         if (encoding) tracePath(root, encoding);
+
+        for (const node of nodes)
+          node.writeSymbol();
       }
     }
   }, [canvasRef, nodes, encoding]);
