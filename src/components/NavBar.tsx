@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 
 function NavBar() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="primary" className="navbar-dark">
       <Navbar.Brand href="#home">Huffman Encoding</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

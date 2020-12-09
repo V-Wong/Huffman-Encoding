@@ -38,7 +38,7 @@ class Node {
 
 class SquareNode extends Node {
   draw() {
-    this.ctx.fillStyle = "#00897b";
+    this.ctx.fillStyle = "#375a7f";
     this.ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
 
     this.ctx.fillStyle = "white";
@@ -64,7 +64,7 @@ class CircleNode extends Node {
   draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.getX + SQUARE_WIDTH / 2, this.getY + SQUARE_HEIGHT / 2, SQUARE_WIDTH / 2, 0, 2 * Math.PI);
-    this.ctx.fillStyle = "#00897b";
+    this.ctx.fillStyle = "#375a7f";
     this.ctx.fill();
 
     this.ctx.fillStyle = "white";

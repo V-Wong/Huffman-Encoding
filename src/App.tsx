@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import NavBar from "./components/NavBar";
 import HuffmanPanel from "./huffman/HuffmanPanel";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootswatch/dist/darkly/bootstrap.min.css";
 
 function App() {
   return (
