@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, InputGroup,  Button, FormControl } from "react-bootstrap";
+import { Container, Row, Col, InputGroup, Button, FormControl } from "react-bootstrap";
 
 import Canvas from "./Canvas";
 import { SquareNode } from "./nodeClasses";
@@ -24,7 +24,7 @@ function HuffmanPanel() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={10} style={{ height: "90vh" }}>
+        <Col xs={10} style={{ height: "80vh" }}>
           <Canvas nodes={nodesList} encoding={selectedEncoding} />
         </Col>
 
@@ -36,7 +36,11 @@ function HuffmanPanel() {
                 <InputGroup.Prepend
                   onMouseOver={() => setSelectedEncoding(encodings[i])}
                 >
-                  <InputGroup.Text style={{width: "8rem"}}>
+                  <InputGroup.Text
+                    style={{ width: "8rem", 
+                             color: selectedEncoding && selectedEncoding === encodings[i] 
+                                    ? "red" : "white" }}
+                  >
                     Encoding: {encodings[i]}
                   </InputGroup.Text>
                 </InputGroup.Prepend>
@@ -51,7 +55,7 @@ function HuffmanPanel() {
               variant="success"
               size="lg"
               block
-              style={{marginTop: "1vh"}}
+              style={{ marginTop: "1vh" }}
               onClick={e => { e.preventDefault(); handleSubmit() }}
             >
               Submit
@@ -60,7 +64,7 @@ function HuffmanPanel() {
               variant="danger"
               size="lg"
               block
-              style={{marginTop: "1vh"}}
+              style={{ marginTop: "1vh" }}
             >
               Clear
             </Button>
