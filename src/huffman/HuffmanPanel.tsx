@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, InputGroup,  Button, FormControl } from "react-bootstrap";
 
 import Canvas from "./Canvas";
@@ -24,7 +24,7 @@ function HuffmanPanel() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={10} style={{ height: "75vh" }}>
+        <Col xs={10} style={{ height: "90vh" }}>
           <Canvas nodes={nodesList} encoding={selectedEncoding} />
         </Col>
 
