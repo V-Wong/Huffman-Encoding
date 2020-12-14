@@ -1,6 +1,8 @@
 {
   "name": "huffman-encoding",
   "version": "0.1.0",
+  "author": "Vincent <vincent@vwong.dev>",
+  "homepage": "https://V-Wong.github.io/Huffman-Encoding",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -22,7 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^16.14.2"
+    "@types/react": "^16.14.2",
+    "gh-pages": "^3.1.0"
   }
 }
