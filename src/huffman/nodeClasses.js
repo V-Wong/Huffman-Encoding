@@ -1,7 +1,7 @@
 const TOP_PADDING = window.innerHeight / 20;
 const LEFT_PADDING = window.innerWidth / 25;
-const SQUARE_HEIGHT = window.innerHeight / 20;
-const SQUARE_WIDTH = window.innerHeight / 20;
+const SQUARE_HEIGHT = window.innerHeight / 25;
+const SQUARE_WIDTH = window.innerHeight / 25;
 
 class Node {
   constructor(symbol, probability, col, row, parent) {

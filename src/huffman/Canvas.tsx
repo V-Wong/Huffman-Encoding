@@ -18,10 +18,15 @@ function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
       // @ts-ignore
       canvasRef.current.height = canvasRef.current.getBoundingClientRect().height;
     }
+  }, []);
 
-    if (canvasRef?.current !== null) {
+  useEffect(() => {
+    if (canvasRef?.current) {
       for (const node of nodes)
         node.canvas = canvasRef.current;
+
+      // @ts-ignore
+      canvasRef.current.getContext('2d').clearRect(0, 0, 10000, 10000);
 
       if (nodes.length) {
         const root = huffmanEncode(nodes, canvasRef.current);

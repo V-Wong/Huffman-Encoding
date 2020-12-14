@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, InputGroup, Button, FormControl } from "react-bootstrap";
+import { Container, Row, Col, InputGroup, Button, FormControl, Card } from "react-bootstrap";
 
 import Canvas from "./Canvas";
 import { SquareNode } from "./nodeClasses";
@@ -24,51 +24,85 @@ function HuffmanPanel() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={10} style={{ height: "80vh" }}>
+        <Col xs={10}>
           <Canvas nodes={nodesList} encoding={selectedEncoding} />
         </Col>
 
         <Col xs={2}>
-          <h2 style={{ margin: "auto", marginBottom: "10px", marginTop: "10px" }}>Enter Symbols</h2>
-          {
-            inputs.map((_, i) => (
-              <InputGroup>
-                <InputGroup.Prepend
-                  onMouseOver={() => setSelectedEncoding(encodings[i])}
+          <Card
+            className="text-center"
+          >
+            <Card.Header>Algorithm Description</Card.Header>
+            <Card.Body>
+              <Card.Title style={{ fontSize: "2rem" }}>Huffman Encoding</Card.Title>
+              <Card.Text>
+                The Huffman Encoding algorithm is an encoding algorithm for lossless data compression.
+                It is a variable length code where symbols of higher probability and given shorter lengths.
+              </Card.Text>
+              <Button variant="primary">
+                <a
+                  href="https://en.wikipedia.org/wiki/Huffman_coding"
+                  style={{ color: "white" }}
                 >
-                  <InputGroup.Text
-                    style={{ width: "8rem", 
-                             color: selectedEncoding && selectedEncoding === encodings[i] 
-                                    ? "red" : "white" }}
-                  >
-                    Encoding: {encodings[i]}
-                  </InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl
-                  onChange={e => inputs[i] = parseFloat(e.target.value)}
-                />
-              </InputGroup>
-            ))
-          }
-          <div className="buttons-container">
-            <Button
-              variant="success"
-              size="lg"
-              block
-              style={{ marginTop: "1vh" }}
-              onClick={e => { e.preventDefault(); handleSubmit() }}
-            >
-              Submit
-            </Button>
-            <Button
-              variant="danger"
-              size="lg"
-              block
-              style={{ marginTop: "1vh" }}
-            >
-              Clear
-            </Button>
-          </div>
+                  Read More
+                </a>
+              </Button>
+            </Card.Body>
+          </Card>
+
+          <Card
+            className="text-center"
+            style={{ marginTop: "2rem" }}
+          >
+            <Card.Header>Probability Input Panel</Card.Header>
+            <Card.Body>
+              <Card.Title style={{ fontSize: "2rem" }}>
+                Enter your symbols
+              </Card.Title>
+              {
+                inputs.map((_, i) => (
+                  <InputGroup>
+                    <InputGroup.Prepend
+                      onMouseOver={() => setSelectedEncoding(encodings[i])}
+                    >
+                      <InputGroup.Text
+                        style={{
+                          width: "8rem",
+                          color: selectedEncoding && selectedEncoding === encodings[i]
+                            ? "red" : "white"
+                        }}
+                      >
+                        Encoding: {encodings[i]}
+                      </InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                      onChange={e => inputs[i] = parseFloat(e.target.value)}
+                    />
+                  </InputGroup>
+                ))
+              }
+
+              <div className="buttons-container">
+                <Button
+                  variant="success"
+                  size="lg"
+                  block
+                  style={{ marginTop: "1vh" }}
+                  onClick={e => { e.preventDefault(); handleSubmit() }}
+                >
+                  Submit
+                </Button>
+                <Button
+                  variant="danger"
+                  size="lg"
+                  block
+                  style={{ marginTop: "1vh" }}
+                >
+                  Clear
+                </Button>
+              </div>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>
