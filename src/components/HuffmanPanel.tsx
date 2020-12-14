@@ -67,7 +67,7 @@ function HuffmanPanel() {
                       </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
-                      onChange={e => inputs[i] = parseFloat(e.target.value)}
+                      onChange={e => !e ? inputs[i] = 0 : inputs[i] = parseFloat(e.target.value)}
                     />
                   </InputGroup>
                 ))
