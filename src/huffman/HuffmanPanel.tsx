@@ -35,17 +35,12 @@ function HuffmanPanel() {
             <Card.Header>Algorithm Description</Card.Header>
             <Card.Body>
               <Card.Title style={{ fontSize: "1.75rem" }}>Huffman Encoding</Card.Title>
-              <Card.Text>
-                The Huffman Encoding algorithm is an encoding algorithm for lossless data compression.
-                It is a variable length code where symbols of higher probability and given shorter lengths.
+              <Card.Text style={{fontSize: "1.1rem"}}>
+                <p>The Huffman Encoding algorithm is an encoding algorithm for lossless data compression.</p>
+                <p>It is a variable length code where symbols of higher probability and given shorter lengths.</p>
               </Card.Text>
-              <Button variant="primary">
-                <a
-                  href="https://en.wikipedia.org/wiki/Huffman_coding"
-                  style={{ color: "white" }}
-                >
-                  Read More
-                </a>
+              <Button variant="primary" onClick={() => window.open("https://en.wikipedia.org/wiki/Huffman_coding")}>
+                Read More
               </Button>
             </Card.Body>
           </Card>
@@ -57,7 +52,7 @@ function HuffmanPanel() {
             <Card.Header>Probability Input Panel</Card.Header>
             <Card.Body>
               <Card.Title style={{ fontSize: "1.75rem" }}>
-                Enter Symbols
+                Enter Symbol Probabilities
               </Card.Title>
               {
                 inputs.map((_, i) => (
@@ -101,6 +96,21 @@ function HuffmanPanel() {
                   Clear
                 </Button>
               </div>
+            </Card.Body>
+          </Card>
+
+          <Card
+            className="text-center"
+            style={{ marginTop: "2rem" }}
+          >
+            <Card.Header>Useful Links</Card.Header>
+            <Card.Body>
+              <Card.Title style={{ fontSize: "1.75rem" }}>
+                Checkout My Other Works
+              </Card.Title>
+              <Card.Link href="https://github.com/V-Wong/Huffman-Encoding">Source Code</Card.Link>
+              <Card.Link href="https://vwong.dev/">My Portfolio</Card.Link>
+              <Card.Link href="https://github.com/V-Wong">My GitHub</Card.Link>
             </Card.Body>
           </Card>
         </Col>
