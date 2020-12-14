@@ -95,9 +95,9 @@ function genNewLevel(nodes: Array<SquareNode | CircleNode>) {
 // and build it up by appending 1 or 0 
 // when recursing on any circle node.
 function dfTraversal(root: SquareNode | CircleNode, encoding: string) {
-    if (!root.parent || !root) {
+    if (root == null || !root || !root.parent) {
         root.encoding = encoding;
-    } else if (root.constructor.name == "SquareNode") {
+    } else if (root.type === "SquareNode") {
         dfTraversal(root.parent[0], encoding);
     } else {
         dfTraversal(root.parent[0], encoding + "0");

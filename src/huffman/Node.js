@@ -37,6 +37,11 @@ class Node {
 }
 
 class SquareNode extends Node {
+  constructor(symbol, probability, col, row, parent) {
+    super(symbol, probability, col, row, parent);
+    this.type = "SquareNode";
+  }
+
   draw() {
     this.ctx.fillStyle = "#375a7f";
     this.ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
@@ -61,6 +66,11 @@ class SquareNode extends Node {
 }
 
 class CircleNode extends Node {
+  constructor(symbol, probability, col, row, parent) {
+    super(symbol, probability, col, row, parent);
+    this.type = "CircleNode";
+  }
+
   draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.getX + SQUARE_WIDTH / 2, this.getY + SQUARE_HEIGHT / 2, SQUARE_WIDTH / 2, 0, 2 * Math.PI);
