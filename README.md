@@ -1,15 +1,10 @@
 # Huffman-Encoding
-A browser-based Huffman encoding visualisation tool.
+A single page web app that generates and renders a binary Huffman tree based on the Huffman encoding algorithm. Implemented in HTML5 Canvas for the core graphics and React + Bootstrap for the remaining control panels.
 
-![alt text](https://github.com/V-Wong/Huffman-Encoding/blob/master/screenshot.png?raw=true)
+![alt text](./cover.png)
 
 ## Features ##
 * User input of up to 8 symbols by probabilities
 * Huffman compression algorithm to encode each symbol by a binary string
 * Visualisation of the generated Huffman tree using HTML5 Canvas
 * Retracing of any user selected path
-
-## TODO ##
-* Arbitrary radix encoding
-* Accepting more than 8 symbols
-* Animations
