@@ -34,7 +34,7 @@ function HuffmanPanel() {
           >
             <Card.Header>Algorithm Description</Card.Header>
             <Card.Body>
-              <Card.Title style={{ fontSize: "2rem" }}>Huffman Encoding</Card.Title>
+              <Card.Title style={{ fontSize: "1.75rem" }}>Huffman Encoding</Card.Title>
               <Card.Text>
                 The Huffman Encoding algorithm is an encoding algorithm for lossless data compression.
                 It is a variable length code where symbols of higher probability and given shorter lengths.
@@ -56,8 +56,8 @@ function HuffmanPanel() {
           >
             <Card.Header>Probability Input Panel</Card.Header>
             <Card.Body>
-              <Card.Title style={{ fontSize: "2rem" }}>
-                Enter your symbols
+              <Card.Title style={{ fontSize: "1.75rem" }}>
+                Enter Symbols
               </Card.Title>
               {
                 inputs.map((_, i) => (
