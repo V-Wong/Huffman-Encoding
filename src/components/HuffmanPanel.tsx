@@ -34,20 +34,20 @@ function HuffmanPanel() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={10}>
+        <Col xs={8}>
           <Canvas nodes={nodesList.filter(node => node.probability !== 0)} encoding={selectedEncoding} />
         </Col>
 
-        <Col xs={2}>
+        <Col xs={4}>
           <AlgorithmDescription />
 
           <Card
             className="text-center"
             style={{ marginTop: "2rem" }}
           >
-            <Card.Header>Probability Input Panel</Card.Header>
+            <Card.Header style={{fontSize: "1.5rem"}}>Probability Input Panel</Card.Header>
             <Card.Body>
-              <Card.Title style={{ fontSize: "1.75rem" }}>
+              <Card.Title style={{ fontSize: "2.5rem" }}>
                 Enter Symbol Probabilities
               </Card.Title>
               {
@@ -58,7 +58,8 @@ function HuffmanPanel() {
                     >
                       <InputGroup.Text
                         style={{
-                          width: "8rem",
+                          fontSize: "1.5rem",
+                          width: "14rem",
                           color: selectedEncoding && selectedEncoding === encodings[i]
                             ? "red" : "white"
                         }}
@@ -78,7 +79,7 @@ function HuffmanPanel() {
                   variant="success"
                   size="lg"
                   block
-                  style={{ marginTop: "1vh" }}
+                  style={{ marginTop: "1vh", fontSize: "1.5rem" }}
                   onClick={e => { e.preventDefault(); handleSubmit() }}
                 >
                   Submit
@@ -87,7 +88,7 @@ function HuffmanPanel() {
                   variant="danger"
                   size="lg"
                   block
-                  style={{ marginTop: "1vh" }}
+                  style={{ marginTop: "1vh", fontSize: "1.5rem" }}
                 >
                   Clear
                 </Button>

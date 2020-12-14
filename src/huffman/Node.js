@@ -1,7 +1,7 @@
-const TOP_PADDING = window.innerHeight / 20;
+const TOP_PADDING = window.innerHeight / 6;
 const LEFT_PADDING = window.innerWidth / 25;
-const SQUARE_HEIGHT = window.innerHeight / 25;
-const SQUARE_WIDTH = window.innerHeight / 25;
+const SQUARE_HEIGHT = window.innerHeight / 13;
+const SQUARE_WIDTH = window.innerHeight / 13;
 
 class Node {
   constructor(symbol, probability, col, row, parent) {
@@ -24,7 +24,7 @@ class Node {
   }
   writeSymbol() {
     this.ctx.strokeStyle = "white";
-    this.ctx.font = "18px Arial";
+    this.ctx.font = "42px Arial";
     this.ctx.fillText(`S${this.symbol}`, this.getX - SQUARE_HEIGHT / 2, this.getY + SQUARE_HEIGHT / 2);
   }
   tracePath(parent) {
@@ -47,7 +47,7 @@ class SquareNode extends Node {
     this.ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
 
     this.ctx.fillStyle = "white";
-    this.ctx.font = "18px Arial";
+    this.ctx.font = "42px Arial";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
     this.ctx.fillText(`${this.probability}`,
@@ -78,7 +78,7 @@ class CircleNode extends Node {
     this.ctx.fill();
 
     this.ctx.fillStyle = "white";
-    this.ctx.font = "18px Arial";
+    this.ctx.font = "42px Arial";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
     this.ctx.fillText(`${this.probability}`,
@@ -98,8 +98,8 @@ class CircleNode extends Node {
     this.ctx.lineTo(this.parent[1].getX + SQUARE_WIDTH, this.parent[1].getY + SQUARE_HEIGHT / 2);
     this.ctx.stroke();
 
-    this.ctx.font = "18px Arial";
-    this.ctx.fillText(0, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.3);
+    this.ctx.font = "36px Arial";
+    this.ctx.fillText(0, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.1);
     this.ctx.fillText(1, this.getX - 5, this.getY + SQUARE_HEIGHT);
   }
 }
