@@ -13,13 +13,21 @@ function HuffmanPanel() {
   const [selectedEncoding, setSelectedEncoding] = useState("");
 
   function handleSubmit() {
-    const newNodes = inputs.filter(x => x)
-      .map((e, i) => new SquareNode(i, e, 0, 0));
+    if (inputs.filter(x => x !== 0).length < 2) {
+      window.alert("Please input at least 2 symbols");
+      return;
+    } else if (Math.abs(inputs.reduce((a, b) => a + b) - 1) >= 0.00001) {
+      window.alert("Please ensure probabilities sum to 1");
+      return;
+    }
+
+    const newNodes = inputs.map((e, i) => new SquareNode(i, e, 0, 0));
     setNodesList(newNodes);
   };
 
   useEffect(() => {
-    nodesList.forEach((node, index) => encodings[index] = node.encoding);
+    nodesList.forEach((node, index) => node.probability !== 0 
+                                       ? encodings[index] = node.encoding : null);
     setEncodings([...encodings]);
   }, [nodesList]);
 
@@ -27,7 +35,7 @@ function HuffmanPanel() {
     <Container fluid>
       <Row>
         <Col xs={10}>
-          <Canvas nodes={nodesList} encoding={selectedEncoding} />
+          <Canvas nodes={nodesList.filter(node => node.probability !== 0)} encoding={selectedEncoding} />
         </Col>
 
         <Col xs={2}>
