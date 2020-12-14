@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
-import { SquareNode } from "./nodeClasses";
-import huffmanEncode, { tracePath } from "./huffmanEncode";
+import { SquareNode } from "../huffman/Node";
+import huffmanEncode, { tracePath } from "../huffman/huffmanEncode";
 
 function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
   const canvasRef = useRef(null);

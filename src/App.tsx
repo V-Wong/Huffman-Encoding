@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from "react-bootstrap";
 
-import HuffmanPanel from "./huffman/HuffmanPanel";
+import HuffmanPanel from "./components/HuffmanPanel";
 
 import "bootswatch/dist/darkly/bootstrap.min.css";
 

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, InputGroup, Button, FormControl, Card } from "react-bootstrap";
 
 import Canvas from "./Canvas";
-import { SquareNode } from "./nodeClasses";
+import AlgorithmDescription from "./AlgorithmDescription";
+import OtherLinks from "./OtherLinks";
+import { SquareNode } from "../huffman/Node";
 
 function HuffmanPanel() {
   const [nodesList, setNodesList] = useState<Array<SquareNode>>([] as Array<SquareNode>);
@@ -14,7 +16,7 @@ function HuffmanPanel() {
     const newNodes = inputs.filter(x => x)
       .map((e, i) => new SquareNode(i, e, 0, 0));
     setNodesList(newNodes);
-  }
+  };
 
   useEffect(() => {
     nodesList.forEach((node, index) => encodings[index] = node.encoding);
@@ -29,21 +31,7 @@ function HuffmanPanel() {
         </Col>
 
         <Col xs={2}>
-          <Card
-            className="text-center"
-          >
-            <Card.Header>Algorithm Description</Card.Header>
-            <Card.Body>
-              <Card.Title style={{ fontSize: "1.75rem" }}>Huffman Encoding</Card.Title>
-              <Card.Text style={{fontSize: "1.1rem"}}>
-                <p>The Huffman Encoding algorithm is an encoding algorithm for lossless data compression.</p>
-                <p>It is a variable length code where symbols of higher probability and given shorter lengths.</p>
-              </Card.Text>
-              <Button variant="primary" onClick={() => window.open("https://en.wikipedia.org/wiki/Huffman_coding")}>
-                Read More
-              </Button>
-            </Card.Body>
-          </Card>
+          <AlgorithmDescription/>
 
           <Card
             className="text-center"
@@ -99,20 +87,7 @@ function HuffmanPanel() {
             </Card.Body>
           </Card>
 
-          <Card
-            className="text-center"
-            style={{ marginTop: "2rem" }}
-          >
-            <Card.Header>Useful Links</Card.Header>
-            <Card.Body>
-              <Card.Title style={{ fontSize: "1.75rem" }}>
-                Checkout My Other Works
-              </Card.Title>
-              <Card.Link href="https://github.com/V-Wong/Huffman-Encoding">Source Code</Card.Link>
-              <Card.Link href="https://vwong.dev/">My Portfolio</Card.Link>
-              <Card.Link href="https://github.com/V-Wong">My GitHub</Card.Link>
-            </Card.Body>
-          </Card>
+          <OtherLinks/>
         </Col>
       </Row>
     </Container>

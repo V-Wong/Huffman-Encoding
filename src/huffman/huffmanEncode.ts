@@ -1,4 +1,4 @@
-import Node, { SquareNode, CircleNode } from "./nodeClasses";
+import Node, { SquareNode, CircleNode } from "./Node";
 
 // Huffman Encoding Algorithm
 function huffmanEncode(nodes: Array<SquareNode | CircleNode>, canvas: any) {
