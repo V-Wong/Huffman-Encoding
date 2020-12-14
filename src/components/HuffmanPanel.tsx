@@ -26,8 +26,8 @@ function HuffmanPanel() {
   };
 
   useEffect(() => {
-    nodesList.forEach((node, index) => node.probability !== 0 
-                                       ? encodings[index] = node.encoding : null);
+    nodesList.forEach((node, index) => node.probability !== 0
+      ? encodings[index] = node.encoding : null);
     setEncodings([...encodings]);
   }, [nodesList]);
 
@@ -39,7 +39,7 @@ function HuffmanPanel() {
         </Col>
 
         <Col xs={2}>
-          <AlgorithmDescription/>
+          <AlgorithmDescription />
 
           <Card
             className="text-center"
@@ -67,7 +67,7 @@ function HuffmanPanel() {
                       </InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
-                      onChange={e => !e ? inputs[i] = 0 : inputs[i] = parseFloat(e.target.value)}
+                      onChange={e => !e.target.value ? inputs[i] = 0 : inputs[i] = parseFloat(e.target.value)}
                     />
                   </InputGroup>
                 ))
@@ -95,7 +95,7 @@ function HuffmanPanel() {
             </Card.Body>
           </Card>
 
-          <OtherLinks/>
+          <OtherLinks />
         </Col>
       </Row>
     </Container>
