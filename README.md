@@ -1,7 +1,7 @@
 # Huffman-Encoding
 A browser-based Huffman encoding visualisation tool.
 
-![alt text](https://github.com/V-Wong/Huffman-Encoding/blob/master/screenshot.png?raw=true)
+![alt text](./cover.png)
 
 ## Features ##
 * User input of up to 8 symbols by probabilities
