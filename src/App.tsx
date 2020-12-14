@@ -7,11 +7,11 @@ import "bootswatch/dist/darkly/bootstrap.min.css";
 
 function App() {
   return (
-    <>
-      <Container fluid style={{ marginTop: "1vh" }}>
+    <div style={{minHeight: "100vh", display: "flex", alignItems: "center"}}>
+      <Container fluid>
         <HuffmanPanel />
       </Container>
-    </>
+    </div>
   );
 }
 
