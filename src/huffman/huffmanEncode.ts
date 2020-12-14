@@ -2,7 +2,7 @@ import Node, { SquareNode, CircleNode } from "./Node";
 
 // Huffman Encoding Algorithm
 function huffmanEncode(nodes: Array<SquareNode | CircleNode>, canvas: any) {
-    console.log(canvas);
+    nodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
 
     // First takes a sorted list of nodes by probability.
 
