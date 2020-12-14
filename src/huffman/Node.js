@@ -1,7 +1,7 @@
-TOP_PADDING = document.getElementById("canvas").height / 10;
-LEFT_PADDING = document.getElementById("canvas").height / 4;
-SQUARE_HEIGHT = document.getElementById("canvas").height / 4;
-SQUARE_WIDTH = document.getElementById("canvas").height / 4;
+const TOP_PADDING = window.innerHeight / 20;
+const LEFT_PADDING = window.innerWidth / 25;
+const SQUARE_HEIGHT = window.innerHeight / 25;
+const SQUARE_WIDTH = window.innerHeight / 25;
 
 class Node {
   constructor(symbol, probability, col, row, parent) {
@@ -10,14 +10,17 @@ class Node {
     this.col = col;
     this.row = row;
     this.parent = parent;
-    this.canvas = document.getElementById("canvas");
-    this.ctx = this.canvas.getContext("2d");
+    this.encoding = "";
   }
   get getX() {
     return LEFT_PADDING + this.col * SQUARE_WIDTH * 4;
   }
   get getY() {
     return TOP_PADDING + this.row * SQUARE_HEIGHT * 2;
+  }
+  set canvas(canvas) {
+    this._canvas = canvas;
+    this.ctx = this._canvas.getContext("2d");
   }
   writeSymbol() {
     this.ctx.strokeStyle = "white";
@@ -35,11 +38,11 @@ class Node {
 
 class SquareNode extends Node {
   draw() {
-    this.ctx.fillStyle = "#00897b";
+    this.ctx.fillStyle = "#375a7f";
     this.ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
 
     this.ctx.fillStyle = "white";
-    this.ctx.font = "22px Arial";
+    this.ctx.font = "18px Arial";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
     this.ctx.fillText(`${this.probability}`,
@@ -61,11 +64,11 @@ class CircleNode extends Node {
   draw() {
     this.ctx.beginPath();
     this.ctx.arc(this.getX + SQUARE_WIDTH / 2, this.getY + SQUARE_HEIGHT / 2, SQUARE_WIDTH / 2, 0, 2 * Math.PI);
-    this.ctx.fillStyle = "#00897b";
+    this.ctx.fillStyle = "#375a7f";
     this.ctx.fill();
 
     this.ctx.fillStyle = "white";
-    this.ctx.font = "22px Arial";
+    this.ctx.font = "18px Arial";
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
     this.ctx.fillText(`${this.probability}`,
@@ -90,3 +93,6 @@ class CircleNode extends Node {
     this.ctx.fillText(1, this.getX - 5, this.getY + SQUARE_HEIGHT);
   }
 }
+
+export default Node;
+export { SquareNode, CircleNode };

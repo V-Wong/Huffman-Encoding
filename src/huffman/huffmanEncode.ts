@@ -1,5 +1,9 @@
+import Node, { SquareNode, CircleNode } from "./Node";
+
 // Huffman Encoding Algorithm
-let huffmanEncode = function(nodes) {
+function huffmanEncode(nodes: Array<SquareNode | CircleNode>, canvas: any) {
+    console.log(canvas);
+
     // First takes a sorted list of nodes by probability.
 
     // Each level (column) of the Huffman tree.
@@ -17,18 +21,20 @@ let huffmanEncode = function(nodes) {
         for (let row = 0; row < newLevel.length; row++) {
             newLevel[row].row = row;
             newLevel[row].col = col;
+            newLevel[row].canvas = canvas;
             newLevel[row].draw();
-            if (newLevel[row].parent != undefined) {
+            if (newLevel[row].parent !== undefined) {
                 newLevel[row].drawLink();
             }
         }
         newLevel = genNewLevel(newLevel);
         levels.push(newLevel);
     }
-    
+
     // Draw the root node
     newLevel[0].row = 0;
     newLevel[0].col = levels.length - 1;
+    newLevel[0].canvas = canvas;
     newLevel[0].draw();
     newLevel[0].drawLink();
 
@@ -42,11 +48,11 @@ let huffmanEncode = function(nodes) {
 
 // For nodes of equal probability, store the circle node
 // above the square node if necessary.
-let circleAboveSquares = function(nodes) {
+function circleAboveSquares(nodes: Array<SquareNode | CircleNode>) {
     for (let i = 0; i < nodes.length; i++) {
         for (let j = 0; j < nodes.length - 1; j++) {
             if (nodes[j].probability == nodes[j + 1].probability
-                    && nodes[j + 1].constructor.name == "CircleNode") {
+                && nodes[j + 1].constructor.name == "CircleNode") {
                 let temp = nodes[j];
                 nodes[j] = nodes[j + 1];
                 nodes[j + 1] = temp;
@@ -57,7 +63,7 @@ let circleAboveSquares = function(nodes) {
     return nodes;
 }
 
-let genNewLevel = function(nodes) {
+function genNewLevel(nodes: Array<SquareNode | CircleNode>) {
     let newLevel = []
 
     // Get the two smallest nodes by probability.
@@ -67,14 +73,14 @@ let genNewLevel = function(nodes) {
     // Copy all the nodes from the previous level
     // excluding the two min nodes.
     for (let i = 0; i < nodes.length - 2; i++) {
-        newLevel.push(new SquareNode(nodes[i].symbol, 
-                      nodes[i].probability, i, i, [nodes[i]]));
+        newLevel.push(new SquareNode(nodes[i].symbol,
+            nodes[i].probability, i, i, [nodes[i]]));
     }
 
     // Create a circle node which is the combination of the two min nodes.
-    newLevel.push(new CircleNode(minNode1.symbol + minNode2.symbol, 
-                  round(minNode1.probability + minNode2.probability),
-                  newLevel.length, newLevel.length, [minNode2, minNode1]));
+    newLevel.push(new CircleNode(minNode1.symbol + minNode2.symbol,
+        round(minNode1.probability + minNode2.probability),
+        newLevel.length, newLevel.length, [minNode2, minNode1]));
 
     // Sort the new level, then place circle node above square nodes.
     newLevel.sort((a, b) => a.probability <= b.probability ? 1 : -1);
@@ -88,7 +94,7 @@ let genNewLevel = function(nodes) {
 // We start with an empty encoding string
 // and build it up by appending 1 or 0 
 // when recursing on any circle node.
-let dfTraversal = function(root, encoding) {
+function dfTraversal(root: SquareNode | CircleNode, encoding: string) {
     if (!root.parent || !root) {
         root.encoding = encoding;
     } else if (root.constructor.name == "SquareNode") {
@@ -99,11 +105,10 @@ let dfTraversal = function(root, encoding) {
     }
 }
 
-let tracePath = function(root, encoding) {
+function tracePath(root: SquareNode | CircleNode, encoding: string) {
     let i = 0;
     while (root.parent) {
-        if (root.parent.length == 2) {
-            console.log(encoding[i]);
+        if (root.parent.length === 2) {
             root.tracePath(encoding[i]);
             root = root.parent[encoding[i]];
             i++;
@@ -113,3 +118,22 @@ let tracePath = function(root, encoding) {
         }
     }
 }
+
+function untracePath(root: SquareNode | CircleNode | null) {
+    if (!root) {
+        return;
+    } else {
+        if (root.parent) {
+            root.drawLink();
+            untracePath(root.parent[0]);
+            untracePath(root.parent[1]);
+        }
+    }
+}
+
+function round(num: number) {
+    return Math.round(num * 100) / 100;
+}
+
+export default huffmanEncode;
+export { tracePath, untracePath };
