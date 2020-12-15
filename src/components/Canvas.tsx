@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import {Card} from "react-bootstrap";
 
 import { SquareNode } from "../huffman/Node";
 import huffmanEncode, { tracePath } from "../huffman/huffmanEncode";
@@ -39,7 +40,15 @@ function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
   }, [canvasRef, nodes, encoding]);
 
   return (
-    <canvas id="canvas" ref={canvasRef} style={{ backgroundColor: "black" }} />
+    <Card 
+      className="text-center" 
+      style={{height: "100%"}}
+    >
+      <Card.Header>Rendered Huffman Tree</Card.Header>
+      <Card.Body>
+        <canvas id="canvas" ref={canvasRef} style={{ backgroundColor: "black" }} />
+      </Card.Body>
+    </Card>
   );
 }
 
