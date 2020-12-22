@@ -1,7 +1,7 @@
-import Node, { SquareNode, CircleNode } from "./Node";
+import AbstractNode, { SquareNode, CircleNode } from "./Node";
 
 // Huffman Encoding Algorithm
-function huffmanEncode(nodes: Array<SquareNode | CircleNode>, canvas: any) {
+function huffmanEncode(nodes: Array<AbstractNode>, canvas: any) {
     nodes.sort((a, b) => a.probability <= b.probability ? 1 : -1);
 
     // First takes a sorted list of nodes by probability.
@@ -48,11 +48,11 @@ function huffmanEncode(nodes: Array<SquareNode | CircleNode>, canvas: any) {
 
 // For nodes of equal probability, store the circle node
 // above the square node if necessary.
-function circleAboveSquares(nodes: Array<SquareNode | CircleNode>) {
+function circleAboveSquares(nodes: Array<AbstractNode>) {
     for (let i = 0; i < nodes.length; i++) {
         for (let j = 0; j < nodes.length - 1; j++) {
-            if (nodes[j].probability == nodes[j + 1].probability
-                && nodes[j + 1].constructor.name == "CircleNode") {
+            if (nodes[j].probability === nodes[j + 1].probability
+                && nodes[j + 1].type === "CircleNode") {
                 let temp = nodes[j];
                 nodes[j] = nodes[j + 1];
                 nodes[j + 1] = temp;
@@ -63,7 +63,7 @@ function circleAboveSquares(nodes: Array<SquareNode | CircleNode>) {
     return nodes;
 }
 
-function genNewLevel(nodes: Array<SquareNode | CircleNode>) {
+function genNewLevel(nodes: Array<AbstractNode>) {
     let newLevel = []
 
     // Get the two smallest nodes by probability.
@@ -94,7 +94,7 @@ function genNewLevel(nodes: Array<SquareNode | CircleNode>) {
 // We start with an empty encoding string
 // and build it up by appending 1 or 0 
 // when recursing on any circle node.
-function dfTraversal(root: SquareNode | CircleNode, encoding: string) {
+function dfTraversal(root: AbstractNode, encoding: string) {
     if (root == null || !root || !root.parent) {
         root.encoding = encoding;
     } else if (root.type === "SquareNode") {
@@ -105,7 +105,7 @@ function dfTraversal(root: SquareNode | CircleNode, encoding: string) {
     }
 }
 
-function tracePath(root: SquareNode | CircleNode, encoding: string) {
+function tracePath(root: AbstractNode, encoding: string) {
     let i = 0;
     while (root.parent) {
         if (root.parent.length === 2) {
@@ -119,7 +119,7 @@ function tracePath(root: SquareNode | CircleNode, encoding: string) {
     }
 }
 
-function untracePath(root: SquareNode | CircleNode | null) {
+function untracePath(root: AbstractNode | null) {
     if (!root) {
         return;
     } else {

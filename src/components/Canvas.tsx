@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import {Card} from "react-bootstrap";
 
-import { SquareNode } from "../huffman/Node";
+import AbstractNode from "../huffman/Node";
 import huffmanEncode, { tracePath } from "../huffman/huffmanEncode";
 
-function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
+function Canvas(props: { nodes: Array<AbstractNode>, encoding: string }) {
   const canvasRef = useRef(null);
   const { nodes, encoding } = props;
 
