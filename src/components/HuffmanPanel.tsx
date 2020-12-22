@@ -4,10 +4,10 @@ import { Container, Row, Col, InputGroup, Button, FormControl, Card } from "reac
 import Canvas from "./Canvas";
 import AlgorithmDescription from "./AlgorithmDescription";
 import OtherLinks from "./OtherLinks";
-import { SquareNode } from "../huffman/Node";
+import AbstractNode, { SquareNode } from "../huffman/Node";
 
 function HuffmanPanel() {
-  const [nodesList, setNodesList] = useState<Array<SquareNode>>([] as Array<SquareNode>);
+  const [nodesList, setNodesList] = useState<Array<AbstractNode>>([] as Array<AbstractNode>);
   const [inputs, _] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
   const [encodings, setEncodings] = useState(["", "", "", "", "", "", "", ""]);
   const [selectedEncoding, setSelectedEncoding] = useState("");

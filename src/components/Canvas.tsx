@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import {Card} from "react-bootstrap";
 
-import { SquareNode } from "../huffman/Node";
-import huffmanEncode, { tracePath } from "../huffman/huffmanEncode";
+import AbstractNode from "../huffman/Node";
+import HuffmanEncoder from "../huffman/HuffmanEncoder";
 
-function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
+function Canvas(props: { nodes: Array<AbstractNode>, encoding: string }) {
   const canvasRef = useRef(null);
   const { nodes, encoding } = props;
 
@@ -23,18 +23,15 @@ function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
 
   useEffect(() => {
     if (canvasRef?.current) {
-      for (const node of nodes)
-        node.canvas = canvasRef.current;
-
       // @ts-ignore
       canvasRef.current.getContext('2d').clearRect(0, 0, 10000, 10000);
 
+      // @ts-ignore
+      const encoder = new HuffmanEncoder(canvasRef.current.getContext('2d'));
+      
       if (nodes.length) {
-        const root = huffmanEncode(nodes, canvasRef.current);
-        if (encoding) tracePath(root, encoding);
-
-        for (const node of nodes)
-          node.writeSymbol();
+        encoder.run(nodes);
+        if (encoding) encoder.tracePath(encoding);
       }
     }
   }, [canvasRef, nodes, encoding]);
