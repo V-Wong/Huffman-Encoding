@@ -43,15 +43,13 @@ function HuffmanPanel() {
 
           <Card
             className="text-center"
-            style={{ marginTop: "2rem" }}
+            style={{ marginTop: "1rem" }}
           >
-            <Card.Header 
-              style={{ fontSize: "1.25rem" }}
-            >
+            <Card.Header >
               Probability Input Panel
             </Card.Header> 
             <Card.Body>
-              <Card.Title style={{ fontSize: "1.75rem" }}>
+              <Card.Title>
                 Enter Symbol Probabilities
               </Card.Title>
               {
@@ -83,7 +81,7 @@ function HuffmanPanel() {
                   size="lg"
                   block
                   style={{ marginTop: "1vh" }}
-                  onClick={e => { e.preventDefault(); handleSubmit() }}
+                  onClick={handleSubmit}
                 >
                   Submit
                 </Button>
