@@ -44,7 +44,7 @@ function Canvas(props: { nodes: Array<SquareNode>, encoding: string }) {
       className="text-center" 
       style={{height: "100%"}}
     >
-      <Card.Header>Rendered Huffman Tree</Card.Header>
+      <Card.Header style={{ fontSize: "1.25rem" }}>Rendered Huffman Tree</Card.Header>
       <Card.Body>
         <canvas id="canvas" ref={canvasRef} style={{ backgroundColor: "black" }} />
       </Card.Body>

@@ -45,7 +45,11 @@ function HuffmanPanel() {
             className="text-center"
             style={{ marginTop: "2rem" }}
           >
-            <Card.Header>Probability Input Panel</Card.Header>
+            <Card.Header 
+              style={{ fontSize: "1.25rem" }}
+            >
+              Probability Input Panel
+            </Card.Header> 
             <Card.Body>
               <Card.Title style={{ fontSize: "1.75rem" }}>
                 Enter Symbol Probabilities
