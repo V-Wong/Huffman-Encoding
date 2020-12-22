@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import {Card} from "react-bootstrap";
 
 import AbstractNode from "../huffman/Node";
-import HuffmanEncode from "../huffman/HuffmanEncoder";
+import HuffmanEncoder from "../huffman/HuffmanEncoder";
 
 function Canvas(props: { nodes: Array<AbstractNode>, encoding: string }) {
   const canvasRef = useRef(null);
@@ -27,7 +27,7 @@ function Canvas(props: { nodes: Array<AbstractNode>, encoding: string }) {
       canvasRef.current.getContext('2d').clearRect(0, 0, 10000, 10000);
 
       // @ts-ignore
-      const encoder = new HuffmanEncode(canvasRef.current.getContext('2d'));
+      const encoder = new HuffmanEncoder(canvasRef.current.getContext('2d'));
       
       if (nodes.length) {
         encoder.run(nodes);
