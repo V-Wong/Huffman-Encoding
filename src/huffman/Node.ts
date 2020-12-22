@@ -4,12 +4,21 @@ const SQUARE_HEIGHT = window.innerHeight / 25;
 const SQUARE_WIDTH = window.innerHeight / 25;
 
 class AbstractNode {
-  constructor(symbol, probability, col, row, parent) {
+  symbol: number;
+  probability: number;
+  col: number;
+  row: number;
+  parents: Array<AbstractNode>;
+  encoding: string;
+  type: string;
+  ctx: any;
+
+  constructor(symbol: number, probability: number, col: number, row: number, parents: Array<AbstractNode>=[]) {
     this.symbol = symbol;
     this.probability = probability;
     this.col = col;
     this.row = row;
-    this.parent = parent;
+    this.parents = parents;
     this.encoding = "";
     this.type = "";
   }
@@ -22,9 +31,8 @@ class AbstractNode {
     return TOP_PADDING + this.row * SQUARE_HEIGHT * 2;
   }
 
-  set canvas(canvas) {
-    this._canvas = canvas;
-    this.ctx = this._canvas.getContext("2d");
+  set canvas(canvas: any) {
+    this.ctx = canvas.getContext("2d");
   }
 
   writeSymbol() {
@@ -33,11 +41,11 @@ class AbstractNode {
     this.ctx.fillText(`S${this.symbol}`, this.getX - SQUARE_HEIGHT / 2, this.getY + SQUARE_HEIGHT / 2);
   }
 
-  tracePath(parent) {
+  tracePath(parentIndex: number) {
     this.ctx.strokeStyle = "red";
     this.ctx.beginPath();
     this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
-    this.ctx.lineTo(this.parent[parent].getX + SQUARE_WIDTH, this.parent[parent].getY + SQUARE_HEIGHT / 2);
+    this.ctx.lineTo(this.parents[parentIndex].getX + SQUARE_WIDTH, this.parents[parentIndex].getY + SQUARE_HEIGHT / 2);
     this.ctx.stroke();
   }
 
@@ -51,8 +59,8 @@ class AbstractNode {
 }
 
 class SquareNode extends AbstractNode {
-  constructor(symbol, probability, col, row, parent) {
-    super(symbol, probability, col, row, parent);
+  constructor(symbol: number, probability: number, col: number, row: number, parents: Array<AbstractNode>=[]) {
+    super(symbol, probability, col, row, parents);
     this.type = "SquareNode";
   }
 
@@ -68,20 +76,21 @@ class SquareNode extends AbstractNode {
       this.getX + SQUARE_WIDTH / 2,
       this.getY + SQUARE_HEIGHT / 2);
   }
+
   drawLink() {
     this.ctx.strokeStyle = "white";
     this.ctx.setLineDash([5, 3]);
     this.ctx.beginPath();
     this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
-    this.ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT / 2);
+    this.ctx.lineTo(this.parents[0].getX + SQUARE_WIDTH, this.parents[0].getY + SQUARE_HEIGHT / 2);
     this.ctx.stroke();
     this.ctx.setLineDash([0]);
   }
 }
 
 class CircleNode extends AbstractNode {
-  constructor(symbol, probability, col, row, parent) {
-    super(symbol, probability, col, row, parent);
+  constructor(symbol: number, probability: number, col: number, row: number, parents: Array<AbstractNode>=[]) {
+    super(symbol, probability, col, row, parents);
     this.type = "CircleNode";
   }
 
@@ -99,18 +108,16 @@ class CircleNode extends AbstractNode {
       this.getX + SQUARE_WIDTH / 2,
       this.getY + SQUARE_HEIGHT / 2);
   }
+
   drawLink() {
     this.ctx.strokeStyle = "white";
 
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
-    this.ctx.lineTo(this.parent[0].getX + SQUARE_WIDTH, this.parent[0].getY + SQUARE_HEIGHT / 2);
-    this.ctx.stroke();
-
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
-    this.ctx.lineTo(this.parent[1].getX + SQUARE_WIDTH, this.parent[1].getY + SQUARE_HEIGHT / 2);
-    this.ctx.stroke();
+    for (let i = 0; i <= 1; i++) {
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
+      this.ctx.lineTo(this.parents[i].getX + SQUARE_WIDTH, this.parents[i].getY + SQUARE_HEIGHT / 2);
+      this.ctx.stroke();
+    }
 
     this.ctx.font = "18px Arial";
     this.ctx.fillText(0, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.3);

@@ -23,7 +23,7 @@ function huffmanEncode(nodes: Array<AbstractNode>, canvas: any) {
             newLevel[row].col = col;
             newLevel[row].canvas = canvas;
             newLevel[row].draw();
-            if (newLevel[row].parent !== undefined) {
+            if (newLevel[row].parents.length) {
                 newLevel[row].drawLink();
             }
         }
@@ -95,26 +95,26 @@ function genNewLevel(nodes: Array<AbstractNode>) {
 // and build it up by appending 1 or 0 
 // when recursing on any circle node.
 function dfTraversal(root: AbstractNode, encoding: string) {
-    if (root == null || !root || !root.parent) {
+    if (root == null || !root || !root.parents.length) {
         root.encoding = encoding;
     } else if (root.type === "SquareNode") {
-        dfTraversal(root.parent[0], encoding);
+        dfTraversal(root.parents[0], encoding);
     } else {
-        dfTraversal(root.parent[0], encoding + "0");
-        dfTraversal(root.parent[1], encoding + "1");
+        dfTraversal(root.parents[0], encoding + "0");
+        dfTraversal(root.parents[1], encoding + "1");
     }
 }
 
 function tracePath(root: AbstractNode, encoding: string) {
     let i = 0;
-    while (root.parent) {
-        if (root.parent.length === 2) {
-            root.tracePath(encoding[i]);
-            root = root.parent[encoding[i]];
+    while (root.parents.length) {
+        if (root.parents.length === 2) {
+            root.tracePath(Number(encoding[i]));
+            root = root.parents[Number(encoding[i])];
             i++;
         } else {
             root.tracePath(0);
-            root = root.parent[0];
+            root = root.parents[0];
         }
     }
 }
@@ -123,10 +123,10 @@ function untracePath(root: AbstractNode | null) {
     if (!root) {
         return;
     } else {
-        if (root.parent) {
+        if (root.parents.length) {
             root.drawLink();
-            untracePath(root.parent[0]);
-            untracePath(root.parent[1]);
+            untracePath(root.parents[0]);
+            untracePath(root.parents[1]);
         }
     }
 }
