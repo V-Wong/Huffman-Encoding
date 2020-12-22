@@ -34,11 +34,11 @@ function HuffmanPanel() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={10}>
+        <Col xs={9}>
           <Canvas nodes={nodesList.filter(node => node.probability !== 0)} encoding={selectedEncoding} />
         </Col>
 
-        <Col xs={2}>
+        <Col xs={3}>
           <AlgorithmDescription />
 
           <Card
@@ -58,7 +58,7 @@ function HuffmanPanel() {
                     >
                       <InputGroup.Text
                         style={{
-                          width: "8rem",
+                          width: "10rem",
                           color: selectedEncoding && selectedEncoding === encodings[i]
                             ? "red" : "white"
                         }}
