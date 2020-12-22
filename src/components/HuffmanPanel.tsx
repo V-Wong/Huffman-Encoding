@@ -27,7 +27,7 @@ function HuffmanPanel() {
 
   useEffect(() => {
     nodesList.forEach((node, index) => node.probability !== 0
-      ? encodings[index] = node.encoding : null);
+                      ? encodings[index] = node.encoding : encodings[index] = "");
     setEncodings([...encodings]);
   }, [nodesList]);
 
