@@ -34,18 +34,22 @@ function HuffmanPanel() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={10}>
+        <Col xs={9}>
           <Canvas nodes={nodesList.filter(node => node.probability !== 0)} encoding={selectedEncoding} />
         </Col>
 
-        <Col xs={2}>
+        <Col xs={3}>
           <AlgorithmDescription />
 
           <Card
             className="text-center"
             style={{ marginTop: "2rem" }}
           >
-            <Card.Header>Probability Input Panel</Card.Header>
+            <Card.Header 
+              style={{ fontSize: "1.25rem" }}
+            >
+              Probability Input Panel
+            </Card.Header> 
             <Card.Body>
               <Card.Title style={{ fontSize: "1.75rem" }}>
                 Enter Symbol Probabilities
@@ -58,7 +62,7 @@ function HuffmanPanel() {
                     >
                       <InputGroup.Text
                         style={{
-                          width: "8rem",
+                          width: "10rem",
                           color: selectedEncoding && selectedEncoding === encodings[i]
                             ? "red" : "white"
                         }}
