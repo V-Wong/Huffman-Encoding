@@ -11,7 +11,6 @@ class AbstractNode {
   parents: Array<AbstractNode>;
   encoding: string;
   type: string;
-  ctx: any;
 
   constructor(symbol: number, probability: number, col: number, row: number, parents: Array<AbstractNode>=[]) {
     this.symbol = symbol;
@@ -31,29 +30,29 @@ class AbstractNode {
     return TOP_PADDING + this.row * SQUARE_HEIGHT * 2;
   }
 
-  set canvas(canvas: any) {
-    this.ctx = canvas.getContext("2d");
+  hasParent() {
+    return this.parents.length !== 0;
   }
 
-  writeSymbol() {
-    this.ctx.strokeStyle = "white";
-    this.ctx.font = "18px Arial";
-    this.ctx.fillText(`S${this.symbol}`, this.getX - SQUARE_HEIGHT / 2, this.getY + SQUARE_HEIGHT / 2);
+  writeSymbol(ctx: any) {
+    ctx.strokeStyle = "white";
+    ctx.font = "18px Arial";
+    ctx.fillText(`S${this.symbol}`, this.getX - SQUARE_HEIGHT / 2, this.getY + SQUARE_HEIGHT / 2);
   }
 
-  tracePath(parentIndex: number) {
-    this.ctx.strokeStyle = "red";
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
-    this.ctx.lineTo(this.parents[parentIndex].getX + SQUARE_WIDTH, this.parents[parentIndex].getY + SQUARE_HEIGHT / 2);
-    this.ctx.stroke();
+  tracePath(ctx: any, parentIndex: number) {
+    ctx.strokeStyle = "red";
+    ctx.beginPath();
+    ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
+    ctx.lineTo(this.parents[parentIndex].getX + SQUARE_WIDTH, this.parents[parentIndex].getY + SQUARE_HEIGHT / 2);
+    ctx.stroke();
   }
 
-  draw() {
+  draw(ctx: any) {
 
   }
 
-  drawLink() {
+  drawLink(ctx: any) {
 
   }
 }
@@ -64,27 +63,27 @@ class SquareNode extends AbstractNode {
     this.type = "SquareNode";
   }
 
-  draw() {
-    this.ctx.fillStyle = "#375a7f";
-    this.ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
+  draw(ctx: any) {
+    ctx.fillStyle = "#375a7f";
+    ctx.fillRect(this.getX, this.getY, SQUARE_WIDTH, SQUARE_HEIGHT);
 
-    this.ctx.fillStyle = "white";
-    this.ctx.font = "18px Arial";
-    this.ctx.textAlign = "center";
-    this.ctx.textBaseline = "middle";
-    this.ctx.fillText(`${this.probability}`,
+    ctx.fillStyle = "white";
+    ctx.font = "18px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(`${this.probability}`,
       this.getX + SQUARE_WIDTH / 2,
       this.getY + SQUARE_HEIGHT / 2);
   }
 
-  drawLink() {
-    this.ctx.strokeStyle = "white";
-    this.ctx.setLineDash([5, 3]);
-    this.ctx.beginPath();
-    this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
-    this.ctx.lineTo(this.parents[0].getX + SQUARE_WIDTH, this.parents[0].getY + SQUARE_HEIGHT / 2);
-    this.ctx.stroke();
-    this.ctx.setLineDash([0]);
+  drawLink(ctx: any) {
+    ctx.strokeStyle = "white";
+    ctx.setLineDash([5, 3]);
+    ctx.beginPath();
+    ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
+    ctx.lineTo(this.parents[0].getX + SQUARE_WIDTH, this.parents[0].getY + SQUARE_HEIGHT / 2);
+    ctx.stroke();
+    ctx.setLineDash([0]);
   }
 }
 
@@ -94,34 +93,34 @@ class CircleNode extends AbstractNode {
     this.type = "CircleNode";
   }
 
-  draw() {
-    this.ctx.beginPath();
-    this.ctx.arc(this.getX + SQUARE_WIDTH / 2, this.getY + SQUARE_HEIGHT / 2, SQUARE_WIDTH / 2, 0, 2 * Math.PI);
-    this.ctx.fillStyle = "#375a7f";
-    this.ctx.fill();
+  draw(ctx: any) {
+    ctx.beginPath();
+    ctx.arc(this.getX + SQUARE_WIDTH / 2, this.getY + SQUARE_HEIGHT / 2, SQUARE_WIDTH / 2, 0, 2 * Math.PI);
+    ctx.fillStyle = "#375a7f";
+    ctx.fill();
 
-    this.ctx.fillStyle = "white";
-    this.ctx.font = "18px Arial";
-    this.ctx.textAlign = "center";
-    this.ctx.textBaseline = "middle";
-    this.ctx.fillText(`${this.probability}`,
+    ctx.fillStyle = "white";
+    ctx.font = "18px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(`${this.probability}`,
       this.getX + SQUARE_WIDTH / 2,
       this.getY + SQUARE_HEIGHT / 2);
   }
 
-  drawLink() {
-    this.ctx.strokeStyle = "white";
+  drawLink(ctx: any) {
+    ctx.strokeStyle = "white";
 
     for (let i = 0; i <= 1; i++) {
-      this.ctx.beginPath();
-      this.ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
-      this.ctx.lineTo(this.parents[i].getX + SQUARE_WIDTH, this.parents[i].getY + SQUARE_HEIGHT / 2);
-      this.ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(this.getX, this.getY + SQUARE_HEIGHT / 2);
+      ctx.lineTo(this.parents[i].getX + SQUARE_WIDTH, this.parents[i].getY + SQUARE_HEIGHT / 2);
+      ctx.stroke();
     }
 
-    this.ctx.font = "18px Arial";
-    this.ctx.fillText(0, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.3);
-    this.ctx.fillText(1, this.getX - 5, this.getY + SQUARE_HEIGHT);
+    ctx.font = "18px Arial";
+    ctx.fillText(0, this.getX - 5, this.getY + SQUARE_HEIGHT * 0.3);
+    ctx.fillText(1, this.getX - 5, this.getY + SQUARE_HEIGHT);
   }
 }
 
