@@ -4,8 +4,6 @@ import {Card} from "react-bootstrap";
 import AbstractNode from "../huffman/Node";
 import HuffmanEncoder from "../huffman/HuffmanEncoder";
 
-import "./canvas.css";
-
 function Canvas(props: { nodes: Array<AbstractNode>, encoding: string }) {
   const canvasRef = useRef(null);
   const { nodes, encoding } = props;
