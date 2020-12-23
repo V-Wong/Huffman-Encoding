@@ -4,6 +4,8 @@ import {Card} from "react-bootstrap";
 import AbstractNode from "../huffman/Node";
 import HuffmanEncoder from "../huffman/HuffmanEncoder";
 
+import "./canvas.css";
+
 function Canvas(props: { nodes: Array<AbstractNode>, encoding: string }) {
   const canvasRef = useRef(null);
   const { nodes, encoding } = props;
@@ -13,7 +15,7 @@ function Canvas(props: { nodes: Array<AbstractNode>, encoding: string }) {
       // @ts-ignore
       canvasRef.current.style.width = '100%';
       // @ts-ignore
-      canvasRef.current.style.height = '100%';
+      canvasRef.current.style.height = 'max(100%, 80vh)';
       // @ts-ignore
       canvasRef.current.width = canvasRef.current.getBoundingClientRect().width;
       // @ts-ignore
@@ -43,7 +45,7 @@ function Canvas(props: { nodes: Array<AbstractNode>, encoding: string }) {
     >
       <Card.Header>Rendered Huffman Tree</Card.Header>
       <Card.Body>
-        <canvas id="canvas" ref={canvasRef} style={{ backgroundColor: "black" }} />
+        <canvas id="canvas" ref={canvasRef} />
       </Card.Body>
     </Card>
   );
