@@ -23,7 +23,7 @@ class AbstractNode {
   }
 
   get getX() {
-    return LEFT_PADDING + this.col * SQUARE_WIDTH * 4;
+    return LEFT_PADDING + this.col * LEFT_PADDING * 2;
   }
 
   get getY() {
